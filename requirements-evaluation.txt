@@ -1,0 +1,3 @@
+# Offline iteration batches; HTTP validation itself uses requirements-sohu.txt.
+-r requirements-sohu.txt
+numpy>=1.26

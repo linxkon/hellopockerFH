@@ -1,0 +1,28 @@
+{
+  "baseline": "hero_bots/bot_sohu_v16/bot.py",
+  "candidates": {
+    "C1": "hero_bots/bot_sohu_iter01/c1.py",
+    "C2": "hero_bots/bot_sohu_iter01/c2.py",
+    "C3": "hero_bots/bot_sohu_iter01/c3.py",
+    "C": "hero_bots/bot_sohu_iter01/bot.py",
+    "control": "hero_bots/bot_sohu_iter01/control.py"
+  },
+  "history": [
+    "hero_bots/bot_v16_squeeze_C_metacap/bot.py",
+    "hero_bots/bot_v16_posfix_nutvalue/bot.py",
+    "hero_bots/bot_v16_squeeze_C_AA_KK_QQ_AKs/bot.py"
+  ],
+  "mixes": [[2, 2, 1], [2, 1, 2], [1, 2, 2]],
+  "rules": "configs/sohu.training.backtest.json",
+  "budget": 1.0,
+  "bootstrap_replicates": 10000,
+  "bootstrap_seed": 918273,
+  "noninferiority_bb_per_match": -0.2,
+  "stages": {
+    "screen": {"pairs_per_mix": 120, "seed_base": 10000, "variants": ["H2", "H3"]},
+    "control": {"pairs_per_mix": 12, "seed_base": 19000, "variants": ["control"]},
+    "smoke": {"pairs_per_mix": 12, "seed_base": 20000, "variants": ["C1", "C2", "C3"]},
+    "development": {"pairs_per_mix": 120, "seed_base": 30000, "variants": ["C1", "C2", "C3", "C"]},
+    "confirmation": {"pairs_per_mix": 600, "seed_base": 100000, "variants": ["C"]}
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "small_blind": 500,
+  "big_blind": 1000,
+  "buy_in": 50000,
+  "initial_bankroll": 1500000,
+  "automatic_rebuy": true,
+  "max_players": 6,
+  "total_rounds": 1,
+  "hands_per_match": 20,
+  "minimum_hands": 20
+}

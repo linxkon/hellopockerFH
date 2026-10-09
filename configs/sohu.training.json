@@ -1,0 +1,19 @@
+{
+  "competition_id": "cf638cd1-a992-41fc-9e39-37ccb0449a17",
+  "key_file": "/root/.config/fullhouse-bot/agent-key",
+  "base_url": "https://poker.bang.sohu.com",
+  "strategy": "hero_bots/bot_sohu_v16/bot.py",
+  "state_dir": "~/.local/state/fullhouse-sohu/cf638cd1-a992-41fc-9e39-37ccb0449a17",
+  "http_timeout": 10,
+  "strategy_timeout": 1,
+  "submit_reserve": 2,
+  "max_clock_skew": 5,
+  "expected_summary": {
+    "initialBankroll": 1500000,
+    "buyIn": 50000,
+    "blinds": {"small": 500, "big": 1000},
+    "maxPlayers": 6,
+    "actionTimeoutSeconds": 60,
+    "automaticRebuy": true
+  }
+}

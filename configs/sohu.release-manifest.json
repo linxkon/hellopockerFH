@@ -1,0 +1,48 @@
+{
+  "status": "locally-validated-candidate",
+  "generated_at": "2026-10-09T11:12:06.322362+00:00",
+  "client_version": "1.0.0",
+  "python_tested": "3.12.13",
+  "minimum_python": "3.10",
+  "tests_passed": 82,
+  "dependencies": {
+    "eval7": "0.1.10",
+    "future": "1.0.0",
+    "pyparsing": "3.3.3"
+  },
+  "files_sha256": {
+    "competition_client/__init__.py": "1a77689e695db3fe61858977b85425db0b0d751955c3477a4e742645502191cd",
+    "competition_client/__main__.py": "5a7de82351a8736c3f9d38811d03fcfb4e2ee12d06c2bed191be4414c7ce5773",
+    "competition_client/adapter.py": "8be8248735c70244d1df802f773f12487ebf723fbb561ffb8c2edd5e10193fbc",
+    "competition_client/config.py": "c11a4ed7e303f516c8f8725ad04219bb6f76948bcfc00a04913487636f50e11c",
+    "competition_client/decision_store.py": "a87f798c939d25027cc309c0a870bdccfd8bb1b1aaefbda07829e907ce0867c3",
+    "competition_client/driver.py": "14936517c047557b11a96f0294a9ef7f30d38c87289dd0fb06476511690e329b",
+    "competition_client/http_client.py": "838578090113523f43e081b6e9875b1dae738c9db06b2a9f7efd2a75cb330988",
+    "competition_client/protocol.py": "79f1d2dd8ea4b0410cc91b007e102b33391d2742b1482041b3bdfddb2d6a9a72",
+    "competition_client/replay.py": "e2938aa43fbf5bd44ca1b8fd9de31bec30f7f00cda6ef52742e21730a253becf",
+    "competition_client/replay_store.py": "c6319ec13d3ffca4481e4f2de8bdb6642a52e87f6365e4068261ace0f6beb6c9",
+    "competition_client/strategy_worker.py": "64e8e896c2dae2cee41e0f6ed326a0873264d2af3755080ea4fed087da9b2e7b",
+    "configs/sohu.training.json": "b23cf600716ed3e035ffbc9d7ddcb3dd5df85b26fad4ed4c687bcf70a6ebd429",
+    "hero_bots/bot_sohu_v16/bot.py": "5a706518e5aa277244ef68275da65524af4c31578c7d9df78e14ba2d0c766d8d",
+    "hero_bots/bot_v16_squeeze_C_metacap/bot.py": "ffa1ac5083482a96b240ce2a3dcff8f329333184f9006231d0c42bbbc877810a",
+    "requirements-sohu.txt": "b5526723fabf6dc7a365babfc242b0e7c03b1d115d60863ff0b970270b5d7d75"
+  },
+  "formal_league_release_pending": [
+    "registration",
+    "official_schedule_and_summary",
+    "non_null_standing_reconciliation",
+    "deployment_freeze",
+    "post_arena_client_online_revalidation"
+  ],
+  "previous_training_validation": {
+    "tests_passed": 54,
+    "changed_files_sha256": {
+      "competition_client/adapter.py": "b39d2b2d9009e104610cffc27e5aa7baf94dbd3f42ab0c0f300f514fc99f8ad1",
+      "competition_client/decision_store.py": "582f1b5ce86b93b79156830cb310da217604b06b04e9ded6846e4d9dda4eb9fa",
+      "competition_client/driver.py": "2c066605a75c5f2769d4d8602beb98706c7b7c82e47a0f553c566835f21b73cb",
+      "competition_client/__main__.py": "00f9236062580a0328cdf0389e5c6bc6a69c899c8bc9091adba2388ae22b48f8",
+      "competition_client/config.py": "275a422edb03ecd4f61533be7de904cbb15a6c6bfd7bb934ce7866b695889b1f"
+    },
+    "note": "The recorded online training predates the local-arena client changes. Current client changes have local validation only."
+  }
+}

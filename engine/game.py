@@ -95,13 +95,23 @@ class PokerEngine:
         dealer_seat: int = 0,
         starting_stacks: Optional[dict] = None,
         seed: Optional[int] = None,
+        small_blind: int = SMALL_BLIND,
+        big_blind: int = BIG_BLIND,
+        starting_stack: int = STARTING_STACK,
+        competition_rules: bool = False,
     ):
         assert 2 <= len(bot_ids) <= MAX_PLAYERS, \
             f"Need 2-{MAX_PLAYERS} bots, got {len(bot_ids)}"
 
+        if not (type(small_blind) is int and type(big_blind) is int
+                and 0 < small_blind <= big_blind and type(starting_stack) is int and starting_stack > 0):
+            raise ValueError("Invalid blinds or starting stack")
+        self.small_blind, self.big_blind = small_blind, big_blind
+        self.competition_rules = competition_rules
+        self._acted_since_full_raise = set()
         stacks = starting_stacks or {}
         self.players = [
-            Player(seat=i, bot_id=bid, stack=stacks.get(bid, STARTING_STACK))
+            Player(seat=i, bot_id=bid, stack=stacks.get(bid, starting_stack))
             for i, bid in enumerate(bot_ids)
         ]
         self.n           = len(self.players)
@@ -115,10 +125,10 @@ class PokerEngine:
         self.action_log      = []          # flat dicts (backwards-compat for bots)
         self.events          = []          # rich event log for replay
         self.current_bet     = 0
-        self.min_raise       = BIG_BLIND
+        self.min_raise       = self.big_blind
 
         # Short all-in: only reopen action if raise >= last full raise size
-        self._last_aggression_size = BIG_BLIND
+        self._last_aggression_size = self.big_blind
 
         self._needs_to_act    = set()
         self._deck_cards      = []         # list[eval7.Card] after shuffle
@@ -139,12 +149,15 @@ class PokerEngine:
         self._needs_to_act = {p.seat for p in self.players if p.is_active}
 
         self._emit("street_start", {"street": "preflop", "community_cards": []})
+        if self.competition_rules and not self._needs_to_act:
+            return self._run_it_out()
         return self._build_state(self._utg_seat())
 
     def apply_action(self, seat: int, raw: dict) -> dict:
         action = self._validate(seat, raw)
         self.action_log.append(action.to_dict())
         self._needs_to_act.discard(seat)
+        self._acted_since_full_raise.add(seat)
         p = self.players[seat]
 
         if action.action == "fold":
@@ -253,7 +266,11 @@ class PokerEngine:
                 p.seat for p in self.players
                 if p.is_active and p.seat != seat
             }
-        # else: short all-in, _needs_to_act unchanged
+            self._acted_since_full_raise = {seat}
+        elif self.competition_rules and raise_size > 0:
+            # Players owe the extra chips, but prior actors cannot re-raise.
+            self._needs_to_act.update(p.seat for p in self.players
+                                      if p.is_active and p.bet_this_street < self.current_bet)
 
     def _next_actor(self, from_seat: int) -> Optional[int]:
         if not self._needs_to_act:
@@ -271,11 +288,12 @@ class PokerEngine:
         return self._advance_street()
 
     def _advance_street(self) -> dict:
+        self._acted_since_full_raise.clear()
         for p in self.players:
             p.bet_this_street = 0
         self.current_bet           = 0
-        self.min_raise             = BIG_BLIND
-        self._last_aggression_size = BIG_BLIND
+        self.min_raise             = self.big_blind
+        self._last_aggression_size = self.big_blind
 
         if self.street == "preflop":
             self.community_cards += self._deal(3)
@@ -323,13 +341,13 @@ class PokerEngine:
 
     def _post_blinds(self):
         sb, bb       = self._sb_seat(), self._bb_seat()
-        sb_amount    = min(SMALL_BLIND, self.players[sb].stack)
-        bb_amount    = min(BIG_BLIND,   self.players[bb].stack)
+        sb_amount    = min(self.small_blind, self.players[sb].stack)
+        bb_amount    = min(self.big_blind,   self.players[bb].stack)
         self._put_in(sb, sb_amount)
         self._put_in(bb, bb_amount)
         self.current_bet           = max(self.current_bet, bb_amount)
-        self.min_raise             = BIG_BLIND
-        self._last_aggression_size = BIG_BLIND
+        self.min_raise             = self.big_blind
+        self._last_aggression_size = self.big_blind
         if self.players[sb].stack == 0:
             self.players[sb].is_all_in = True
         if self.players[bb].stack == 0:
@@ -398,6 +416,11 @@ class PokerEngine:
 
         if act == "call":
             return Action(seat, "check") if owed == 0 else Action(seat, "call", owed)
+
+        if (self.competition_rules and seat in self._acted_since_full_raise
+                and act in ("raise", "all_in")
+                and p.stack + p.bet_this_street > self.current_bet):
+            return Action(seat, "call", min(owed, p.stack)) if owed else Action(seat, "check")
 
         if act == "raise":
             min_total    = self.current_bet + self.min_raise
@@ -563,7 +586,10 @@ class PokerEngine:
             "pot":                   self.pot,
             "community_cards":       [str(c) for c in self.community_cards],
             "current_bet":           self.current_bet,
-            "min_raise_to":          self.current_bet + self.min_raise,
+            "min_raise_to":          (0 if self.competition_rules and seat in self._acted_since_full_raise
+                                      else self.current_bet + self.min_raise),
+            "big_blind":             self.big_blind,
+            "small_blind":           self.small_blind,
             "amount_owed":           owed,
             "can_check":             owed == 0,
             "your_cards":            [str(c) for c in p.hole_cards],

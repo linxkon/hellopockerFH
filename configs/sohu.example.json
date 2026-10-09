@@ -1,0 +1,12 @@
+{
+  "competition_id": "SET_EXPLICIT_TRAINING_COMPETITION_ID",
+  "key_file": "/root/.config/fullhouse-bot/agent-key",
+  "base_url": "https://poker.bang.sohu.com",
+  "strategy": "hero_bots/bot_sohu_v16/bot.py",
+  "state_dir": "~/.local/state/fullhouse-sohu/training",
+  "http_timeout": 10,
+  "strategy_timeout": 1,
+  "submit_reserve": 2,
+  "max_clock_skew": 5,
+  "expected_summary": {}
+}

@@ -1,0 +1,16 @@
+{
+  "name": "Internal strategy evaluation",
+  "small_blind": 100,
+  "big_blind": 200,
+  "buy_in": 20000,
+  "initial_bankroll": 400000,
+  "automatic_rebuy": true,
+  "hands": 100,
+  "minimum_hands": 20,
+  "action_timeout": 30,
+  "max_consecutive_timeouts": 3,
+  "duration_seconds": 86400,
+  "dealer_seat": 0,
+  "host": "127.0.0.1",
+  "port": 8765
+}

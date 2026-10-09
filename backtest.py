@@ -395,7 +395,9 @@ def compute_hand_ev(state, pre_hand_stacks, mc_samples=4000, debug=False,
 # ---------------------------------------------------------------------------
 
 def run_match_inproc(decide_map, n_hands, seed, budget=2.0, fold_on_timeout=True,
-                     compute_ev=True, ev_mc_samples=4000, ev_debug=False):
+                     compute_ev=True, ev_mc_samples=4000, ev_debug=False,
+                     competition_config=None, competition_active=True, leaving_agents=(),
+                     initial_balances=None, observer=None, engine_factory=None):
     """decide_map: ordered dict {bot_id: decide_callable}. Insertion order is the
     seating order. Returns chip deltas, EV-adjusted chip deltas, hands played,
     per-bot timing and errors.
@@ -403,8 +405,28 @@ def run_match_inproc(decide_map, n_hands, seed, budget=2.0, fold_on_timeout=True
     EV-adjustment is a post-hoc measurement computed from each completed hand;
     it does not affect play. If `compute_ev` is False, `ev_chip_delta` mirrors
     `chip_delta`."""
+    from engine.competition import CompetitionConfig, standing
+    cfg = (CompetitionConfig(**competition_config) if isinstance(competition_config, dict)
+           else competition_config)
+    if cfg is not None and not isinstance(cfg, CompetitionConfig):
+        raise ValueError("Invalid competition_config")
     bot_ids = list(decide_map.keys())
-    stacks = {b: STARTING_STACK for b in bot_ids}
+    if cfg and len(bot_ids) > cfg.max_players:
+        raise ValueError("Field exceeds Competition max_players")
+    if n_hands < 0:
+        raise ValueError("Hand count must not be negative")
+    balances = initial_balances or {}
+    bankroll = {b: balances.get(b, cfg.initial_bankroll) if cfg else 0 for b in bot_ids}
+    if any(type(v) is not int or v < 0 for v in bankroll.values()):
+        raise ValueError("Invalid bankroll balance")
+    stacks = {b: (cfg.buy_in if bankroll[b] >= cfg.buy_in and b not in leaving_agents
+                  and competition_active else 0) if cfg else STARTING_STACK for b in bot_ids}
+    if cfg:
+        for b in bot_ids:
+            bankroll[b] -= stacks[b]
+    actual_hands = {b: 0 for b in bot_ids}
+    net_result = {b: 0 for b in bot_ids}
+    rebuys = {b: 0 for b in bot_ids}
     match_log = []
     dealer = 0
     hands_played = 0
@@ -415,6 +437,12 @@ def run_match_inproc(decide_map, n_hands, seed, budget=2.0, fold_on_timeout=True
     do_ev = compute_ev and _HAS_EVAL7
 
     for hand_num in range(n_hands):
+        if cfg and cfg.automatic_rebuy and competition_active:
+            for b in bot_ids:
+                if stacks[b] == 0 and bankroll[b] >= cfg.buy_in and b not in leaving_agents:
+                    bankroll[b] -= cfg.buy_in
+                    stacks[b] = cfg.buy_in
+                    rebuys[b] += 1
         alive = [b for b in bot_ids if stacks[b] > 0]
         if len(alive) < 2:
             break
@@ -423,15 +451,19 @@ def run_match_inproc(decide_map, n_hands, seed, budget=2.0, fold_on_timeout=True
         pre_hand = {b: stacks[b] for b in alive}
 
         hseed = (seed * 1000003 + hand_num) if seed is not None else None
-        eng = PokerEngine(
-            hand_id=f"bt_h{hand_num}",
+        eng = (engine_factory or PokerEngine)(
+            hand_id=f"sohu_{seed}_h{hand_num}" if cfg else f"bt_h{hand_num}",
             bot_ids=alive,
             dealer_seat=dealer % len(alive),
             starting_stacks={b: stacks[b] for b in alive},
             seed=hseed,
+            **({"small_blind": cfg.small_blind, "big_blind": cfg.big_blind,
+                "starting_stack": cfg.buy_in, "competition_rules": True} if cfg else {}),
         )
 
         state = eng.start_hand()
+        if observer:
+            observer("start_hand", eng, state)
         if state.get("type") == "action_request":
             state["match_action_log"] = match_log[-200:]
 
@@ -439,6 +471,9 @@ def run_match_inproc(decide_map, n_hands, seed, budget=2.0, fold_on_timeout=True
         while state.get("type") == "action_request":
             seat = state["seat_to_act"]
             bid = alive[seat]
+
+            if observer:
+                observer("before_decision", eng, state, bid=bid)
 
             t0 = time.perf_counter()
             try:
@@ -458,21 +493,34 @@ def run_match_inproc(decide_map, n_hands, seed, budget=2.0, fold_on_timeout=True
             if not isinstance(action, dict) or "action" not in action:
                 action = {"action": "fold"}
 
+            if observer:
+                adapted = observer("decision", eng, state, bid=bid, action=action, elapsed=dt)
+                if adapted is not None:
+                    action = adapted
+
             match_log.append({
                 "hand_num": hand_num, "seat": seat, "bot_id": bid,
                 "action": action.get("action"), "amount": action.get("amount"),
             })
 
             state = eng.apply_action(seat, action)
+            if observer:
+                observer("after_action", eng, state)
             if state.get("type") == "action_request":
                 state["match_action_log"] = match_log[-200:]
 
             steps += 1
-            if steps > 1000:  # same guard as the real runner
-                break
+            if steps > 1000:
+                raise RuntimeError("Hand did not settle within 1000 actions")
 
-        for b, s in state.get("final_stacks", {}).items():
+        if state.get("type") != "hand_complete":
+            raise RuntimeError("Unsettled hand cannot count toward score")
+        if observer:
+            observer("hand_complete", eng, state)
+        for b, s in state["final_stacks"].items():
             stacks[b] = s
+            net_result[b] += s - pre_hand[b]
+            actual_hands[b] += 1
 
         # ---- EV accounting (post-hoc, reads the completed hand only) --------
         if do_ev:
@@ -496,7 +544,7 @@ def run_match_inproc(decide_map, n_hands, seed, budget=2.0, fold_on_timeout=True
         dealer += 1
         hands_played += 1
 
-    chip_delta = {b: stacks[b] - STARTING_STACK for b in bot_ids}
+    chip_delta = dict(net_result)
     if do_ev:
         ev_chip_delta = {b: round(ev_total[b], 4) for b in bot_ids}
     else:
@@ -509,6 +557,17 @@ def run_match_inproc(decide_map, n_hands, seed, budget=2.0, fold_on_timeout=True
         "hands": hands_played,
         "timing": timing,
         "errors": errors,
+        "environment_version": "sohu-v1" if cfg else "fullhouse-legacy-v2",
+        "competition_config": cfg.to_dict() if cfg else None,
+        "net_result": net_result,
+        "hands_played_by_agent": actual_hands,
+        "rebuy_count": rebuys,
+        "final_stacks": stacks,
+        "bankroll_remaining": {b: bankroll[b]+stacks[b] for b in bot_ids} if cfg else bankroll,
+        "qualification_eligible": {b: standing(net_result[b], actual_hands[b], cfg)["qualification_eligible"]
+                                   if cfg else None for b in bot_ids},
+        "bb_per_100_by_agent": {b: standing(net_result[b], actual_hands[b], cfg)["bb_per_100"]
+                               if cfg else None for b in bot_ids},
     }
 
 
@@ -516,7 +575,7 @@ def run_match_inproc(decide_map, n_hands, seed, budget=2.0, fold_on_timeout=True
 # Stats
 # ---------------------------------------------------------------------------
 
-def summarize(deltas, hands_per_match):
+def summarize(deltas, hands_per_match, actual_hands=None, big_blind=BIG_BLIND):
     """deltas: list of per-match chip deltas for one bot."""
     n = len(deltas)
     total = sum(deltas)
@@ -524,12 +583,13 @@ def summarize(deltas, hands_per_match):
     sd = statistics.stdev(deltas) if n > 1 else 0.0
     se = sd / math.sqrt(n) if n else 0.0
     ci = 1.96 * se
-    total_hands = hands_per_match * n if hands_per_match else 0
+    total_hands = sum(actual_hands) if actual_hands is not None else hands_per_match * n if hands_per_match else 0
     # big blinds won per 100 hands
-    bb100 = (total / BIG_BLIND) / total_hands * 100 if total_hands else 0.0
+    bb100 = (total / big_blind) / total_hands * 100 if total_hands else (None if actual_hands is not None else 0.0)
     wins = sum(1 for d in deltas if d > 0)
     return {
         "matches": n,
+        "hands_played": total_hands,
         "total_delta": total,
         "mean_delta": mean,
         "stdev": sd,
@@ -564,6 +624,8 @@ def cmd_eval(args):
 
     per_bot = {bid: [] for bid in ids}
     per_bot_ev = {bid: [] for bid in ids}
+    per_hands = {bid: [] for bid in ids}
+    match_results = []
     t0 = time.time()
     cached = None if args.reload else build_decide_map(id_to_path)
 
@@ -586,7 +648,11 @@ def cmd_eval(args):
                                fold_on_timeout=not args.no_fold_on_timeout,
                                compute_ev=not args.no_ev,
                                ev_mc_samples=args.ev_mc,
-                               ev_debug=args.ev_debug)
+                               ev_debug=args.ev_debug,
+                               competition_config=args.competition_config)
+        match_results.append(res)
+        for bid in ids:
+            per_hands[bid].append(res["hands_played_by_agent"][bid])
         for bid, d in res["chip_delta"].items():
             per_bot[bid].append(d)
         for bid, d in res.get("ev_chip_delta", {}).items():
@@ -596,12 +662,16 @@ def cmd_eval(args):
             sys.stderr.write(f"  ...{i+1}/{args.matches} matches\n")
 
     elapsed = time.time() - t0
-    stats = {bid: summarize(per_bot[bid], args.hands) for bid in ids}
-    ev_stats = {bid: summarize(per_bot_ev[bid], args.hands) for bid in ids}
+    stats = {bid: summarize(per_bot[bid], args.hands, per_hands[bid] if args.competition_config else None,
+                             args.competition_config["big_blind"] if args.competition_config else BIG_BLIND) for bid in ids}
+    ev_stats = {bid: summarize(per_bot_ev[bid], args.hands, per_hands[bid] if args.competition_config else None,
+                                args.competition_config["big_blind"] if args.competition_config else BIG_BLIND) for bid in ids}
 
     if args.json:
         print(json.dumps({"hero": hero_id, "elapsed_s": round(elapsed, 2),
-                          "stats": stats, "ev_stats": ev_stats}, indent=2))
+                          "stats": stats, "ev_stats": ev_stats,
+                          "environment_version": "sohu-v1" if args.competition_config else "fullhouse-legacy-v2",
+                          "competition_config": args.competition_config, "matches": match_results}, indent=2))
         return
 
     print(f"\nEVAL — {args.matches} matches x {args.hands} hands "
@@ -650,6 +720,7 @@ def cmd_ab(args):
     n_seats = len(field_ids) + 1
     a_deltas, b_deltas, paired_diff = [], [], []
     a_ev_deltas, b_ev_deltas, paired_ev_diff = [], [], []
+    a_hands, b_hands, match_results = [], [], []
     t0 = time.time()
 
     for i in range(args.matches):
@@ -669,10 +740,14 @@ def cmd_ab(args):
                                     fold_on_timeout=not args.no_fold_on_timeout,
                                     compute_ev=not args.no_ev,
                                     ev_mc_samples=args.ev_mc,
-                                    ev_debug=args.ev_debug)
+                                    ev_debug=args.ev_debug,
+                               competition_config=args.competition_config)
 
         ra = seated(a_id, args.a)
         rb = seated(b_id, args.b)
+        a_hands.append(ra["hands_played_by_agent"][a_id])
+        b_hands.append(rb["hands_played_by_agent"][b_id])
+        match_results.append({"a": ra, "b": rb})
         da = ra["chip_delta"][a_id]
         db = rb["chip_delta"][b_id]
         da_e = ra.get("ev_chip_delta", {}).get(a_id, da)
@@ -688,12 +763,16 @@ def cmd_ab(args):
             sys.stderr.write(f"  ...{i+1}/{args.matches} paired matches\n")
 
     elapsed = time.time() - t0
-    sa = summarize(a_deltas, args.hands)
-    sb = summarize(b_deltas, args.hands)
+    bb = args.competition_config["big_blind"] if args.competition_config else BIG_BLIND
+    sa = summarize(a_deltas, args.hands, a_hands if args.competition_config else None, bb)
+    sb = summarize(b_deltas, args.hands, b_hands if args.competition_config else None, bb)
     sd = summarize(paired_diff, args.hands)
-    sa_e = summarize(a_ev_deltas, args.hands)
-    sb_e = summarize(b_ev_deltas, args.hands)
+    sa_e = summarize(a_ev_deltas, args.hands, a_hands if args.competition_config else None, bb)
+    sb_e = summarize(b_ev_deltas, args.hands, b_hands if args.competition_config else None, bb)
     sd_e = summarize(paired_ev_diff, args.hands)
+    if args.competition_config:
+        # Different participation denominators cannot be a paired chip-difference rate.
+        sd["bb_per_100"] = sd_e["bb_per_100"] = None
     # paired t-stat on the per-match difference (realized and EV-adjusted)
     t_stat = (sd["mean_delta"] / sd["stderr"]) if sd["stderr"] else 0.0
     t_stat_ev = (sd_e["mean_delta"] / sd_e["stderr"]) if sd_e["stderr"] else 0.0
@@ -701,6 +780,8 @@ def cmd_ab(args):
     if args.json:
         print(json.dumps({
             "a": a_id, "b": b_id, "elapsed_s": round(elapsed, 2),
+            "environment_version": "sohu-v1" if args.competition_config else "fullhouse-legacy-v2",
+            "competition_config": args.competition_config, "matches": match_results,
             "A": sa, "B": sb, "A_minus_B": sd, "t_stat": t_stat,
             "A_ev": sa_e, "B_ev": sb_e, "A_minus_B_ev": sd_e,
             "t_stat_ev": t_stat_ev,
@@ -765,6 +846,7 @@ def main():
     sub = ap.add_subparsers(dest="mode", required=True)
 
     common = argparse.ArgumentParser(add_help=False)
+    common.add_argument("--competition-config", help="JSON local CompetitionConfig or Discovery summary; use --json for Sohu results")
     common.add_argument("--matches", type=int, default=100)
     common.add_argument("--hands", type=int, default=400, help="hands per match")
     common.add_argument("--seed-base", type=int, default=0)
@@ -796,6 +878,14 @@ def main():
     pa.add_argument("--field", nargs="+", required=True, help="opponent bots")
 
     args = ap.parse_args()
+    if args.competition_config:
+        from engine.competition import CompetitionConfig
+        with open(args.competition_config, encoding="utf-8") as handle:
+            raw = json.load(handle)
+        cfg = CompetitionConfig.from_summary(raw) if "blinds" in raw else CompetitionConfig(**raw)
+        args.competition_config = cfg.to_dict()
+        if not args.json:
+            ap.error("Sohu evaluation requires --json to preserve null rates and actual hand counts")
 
     if args.repo:
         sys.path.insert(0, os.path.abspath(args.repo))

@@ -1,0 +1,3773 @@
+{
+  "environment_version": "sohu-v1",
+  "competition_config": {
+    "small_blind": 100,
+    "big_blind": 200,
+    "buy_in": 20000,
+    "initial_bankroll": 40000,
+    "automatic_rebuy": true,
+    "max_players": 6,
+    "total_rounds": 1,
+    "hands_per_match": 20,
+    "minimum_hands": 20
+  },
+  "per_match_hands": {
+    "bot_sohu_v16": [
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20
+    ],
+    "competent_tag": [
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20
+    ],
+    "balanced_tag": [
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20
+    ],
+    "calling_station": [
+      19,
+      16,
+      14,
+      9,
+      15,
+      20,
+      20,
+      11,
+      11,
+      20,
+      20,
+      18,
+      18,
+      20,
+      20,
+      18,
+      20,
+      20,
+      19,
+      20,
+      14,
+      20,
+      8,
+      9
+    ],
+    "nit_folder": [
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20
+    ],
+    "multi_barrel": [
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20
+    ]
+  },
+  "match_records": [
+    {
+      "chip_delta": {
+        "bot_sohu_v16": 1816,
+        "competent_tag": 30524,
+        "balanced_tag": -70,
+        "calling_station": -40000,
+        "nit_folder": -1840,
+        "multi_barrel": 9570
+      },
+      "ev_chip_delta": {
+        "bot_sohu_v16": 1816.0,
+        "competent_tag": 30524.0,
+        "balanced_tag": -70.0,
+        "calling_station": -40000.0,
+        "nit_folder": -1840.0,
+        "multi_barrel": 9570.0
+      },
+      "hands": 20,
+      "timing": {
+        "bot_sohu_v16": {
+          "max": 0.01413982899975963,
+          "slow": 0
+        },
+        "competent_tag": {
+          "max": 0.0013841030013281852,
+          "slow": 0
+        },
+        "balanced_tag": {
+          "max": 2.61999957729131e-05,
+          "slow": 0
+        },
+        "calling_station": {
+          "max": 1.5999976312741637e-06,
+          "slow": 0
+        },
+        "nit_folder": {
+          "max": 9.399998816661537e-06,
+          "slow": 0
+        },
+        "multi_barrel": {
+          "max": 0.00012579999747686088,
+          "slow": 0
+        }
+      },
+      "errors": {
+        "bot_sohu_v16": 0,
+        "competent_tag": 0,
+        "balanced_tag": 0,
+        "calling_station": 0,
+        "nit_folder": 0,
+        "multi_barrel": 0
+      },
+      "environment_version": "sohu-v1",
+      "competition_config": {
+        "small_blind": 100,
+        "big_blind": 200,
+        "buy_in": 20000,
+        "initial_bankroll": 40000,
+        "automatic_rebuy": true,
+        "max_players": 6,
+        "total_rounds": 1,
+        "hands_per_match": 20,
+        "minimum_hands": 20
+      },
+      "net_result": {
+        "bot_sohu_v16": 1816,
+        "competent_tag": 30524,
+        "balanced_tag": -70,
+        "calling_station": -40000,
+        "nit_folder": -1840,
+        "multi_barrel": 9570
+      },
+      "hands_played_by_agent": {
+        "bot_sohu_v16": 20,
+        "competent_tag": 20,
+        "balanced_tag": 20,
+        "calling_station": 19,
+        "nit_folder": 20,
+        "multi_barrel": 20
+      },
+      "rebuy_count": {
+        "bot_sohu_v16": 0,
+        "competent_tag": 0,
+        "balanced_tag": 0,
+        "calling_station": 1,
+        "nit_folder": 0,
+        "multi_barrel": 0
+      },
+      "final_stacks": {
+        "bot_sohu_v16": 21816,
+        "competent_tag": 50524,
+        "balanced_tag": 19930,
+        "calling_station": 0,
+        "nit_folder": 18160,
+        "multi_barrel": 29570
+      },
+      "bankroll_remaining": {
+        "bot_sohu_v16": 41816,
+        "competent_tag": 70524,
+        "balanced_tag": 39930,
+        "calling_station": 0,
+        "nit_folder": 38160,
+        "multi_barrel": 49570
+      },
+      "qualification_eligible": {
+        "bot_sohu_v16": true,
+        "competent_tag": true,
+        "balanced_tag": true,
+        "calling_station": false,
+        "nit_folder": true,
+        "multi_barrel": true
+      },
+      "bb_per_100_by_agent": {
+        "bot_sohu_v16": 45.4,
+        "competent_tag": 763.1,
+        "balanced_tag": -1.75,
+        "calling_station": -1052.6315789473683,
+        "nit_folder": -46.0,
+        "multi_barrel": 239.25
+      }
+    },
+    {
+      "chip_delta": {
+        "competent_tag": -900,
+        "balanced_tag": 41,
+        "calling_station": -40000,
+        "nit_folder": 7261,
+        "multi_barrel": 26669,
+        "bot_sohu_v16": 6929
+      },
+      "ev_chip_delta": {
+        "competent_tag": -900.0,
+        "balanced_tag": 41.0,
+        "calling_station": -40000.0,
+        "nit_folder": 7261.0,
+        "multi_barrel": 26669.0,
+        "bot_sohu_v16": 6929.0
+      },
+      "hands": 20,
+      "timing": {
+        "competent_tag": {
+          "max": 0.001957903994480148,
+          "slow": 0
+        },
+        "balanced_tag": {
+          "max": 4.67000063508749e-05,
+          "slow": 0
+        },
+        "calling_station": {
+          "max": 2.6000052457675338e-06,
+          "slow": 0
+        },
+        "nit_folder": {
+          "max": 3.4199998481199145e-05,
+          "slow": 0
+        },
+        "multi_barrel": {
+          "max": 4.50000079581514e-05,
+          "slow": 0
+        },
+        "bot_sohu_v16": {
+          "max": 0.016589334001764655,
+          "slow": 0
+        }
+      },
+      "errors": {
+        "competent_tag": 0,
+        "balanced_tag": 0,
+        "calling_station": 0,
+        "nit_folder": 0,
+        "multi_barrel": 0,
+        "bot_sohu_v16": 0
+      },
+      "environment_version": "sohu-v1",
+      "competition_config": {
+        "small_blind": 100,
+        "big_blind": 200,
+        "buy_in": 20000,
+        "initial_bankroll": 40000,
+        "automatic_rebuy": true,
+        "max_players": 6,
+        "total_rounds": 1,
+        "hands_per_match": 20,
+        "minimum_hands": 20
+      },
+      "net_result": {
+        "competent_tag": -900,
+        "balanced_tag": 41,
+        "calling_station": -40000,
+        "nit_folder": 7261,
+        "multi_barrel": 26669,
+        "bot_sohu_v16": 6929
+      },
+      "hands_played_by_agent": {
+        "competent_tag": 20,
+        "balanced_tag": 20,
+        "calling_station": 16,
+        "nit_folder": 20,
+        "multi_barrel": 20,
+        "bot_sohu_v16": 20
+      },
+      "rebuy_count": {
+        "competent_tag": 0,
+        "balanced_tag": 0,
+        "calling_station": 1,
+        "nit_folder": 0,
+        "multi_barrel": 0,
+        "bot_sohu_v16": 0
+      },
+      "final_stacks": {
+        "competent_tag": 19100,
+        "balanced_tag": 20041,
+        "calling_station": 0,
+        "nit_folder": 27261,
+        "multi_barrel": 46669,
+        "bot_sohu_v16": 26929
+      },
+      "bankroll_remaining": {
+        "competent_tag": 39100,
+        "balanced_tag": 40041,
+        "calling_station": 0,
+        "nit_folder": 47261,
+        "multi_barrel": 66669,
+        "bot_sohu_v16": 46929
+      },
+      "qualification_eligible": {
+        "competent_tag": true,
+        "balanced_tag": true,
+        "calling_station": false,
+        "nit_folder": true,
+        "multi_barrel": true,
+        "bot_sohu_v16": true
+      },
+      "bb_per_100_by_agent": {
+        "competent_tag": -22.5,
+        "balanced_tag": 1.025,
+        "calling_station": -1250.0,
+        "nit_folder": 181.525,
+        "multi_barrel": 666.725,
+        "bot_sohu_v16": 173.225
+      }
+    },
+    {
+      "chip_delta": {
+        "balanced_tag": -20300,
+        "calling_station": -40000,
+        "nit_folder": 36515,
+        "multi_barrel": 11245,
+        "bot_sohu_v16": 1665,
+        "competent_tag": 10875
+      },
+      "ev_chip_delta": {
+        "balanced_tag": -6053.268,
+        "calling_station": -35969.0909,
+        "nit_folder": 22268.268,
+        "multi_barrel": 7214.0909,
+        "bot_sohu_v16": 1665.0,
+        "competent_tag": 10875.0
+      },
+      "hands": 20,
+      "timing": {
+        "balanced_tag": {
+          "max": 3.530000685714185e-05,
+          "slow": 0
+        },
+        "calling_station": {
+          "max": 2.0000006770715117e-06,
+          "slow": 0
+        },
+        "nit_folder": {
+          "max": 1.3199998647905886e-05,
+          "slow": 0
+        },
+        "multi_barrel": {
+          "max": 2.8000009479001164e-05,
+          "slow": 0
+        },
+        "bot_sohu_v16": {
+          "max": 0.016763334002462216,
+          "slow": 0
+        },
+        "competent_tag": {
+          "max": 0.001355102998786606,
+          "slow": 0
+        }
+      },
+      "errors": {
+        "balanced_tag": 0,
+        "calling_station": 0,
+        "nit_folder": 0,
+        "multi_barrel": 0,
+        "bot_sohu_v16": 0,
+        "competent_tag": 0
+      },
+      "environment_version": "sohu-v1",
+      "competition_config": {
+        "small_blind": 100,
+        "big_blind": 200,
+        "buy_in": 20000,
+        "initial_bankroll": 40000,
+        "automatic_rebuy": true,
+        "max_players": 6,
+        "total_rounds": 1,
+        "hands_per_match": 20,
+        "minimum_hands": 20
+      },
+      "net_result": {
+        "balanced_tag": -20300,
+        "calling_station": -40000,
+        "nit_folder": 36515,
+        "multi_barrel": 11245,
+        "bot_sohu_v16": 1665,
+        "competent_tag": 10875
+      },
+      "hands_played_by_agent": {
+        "balanced_tag": 20,
+        "calling_station": 14,
+        "nit_folder": 20,
+        "multi_barrel": 20,
+        "bot_sohu_v16": 20,
+        "competent_tag": 20
+      },
+      "rebuy_count": {
+        "balanced_tag": 1,
+        "calling_station": 1,
+        "nit_folder": 0,
+        "multi_barrel": 0,
+        "bot_sohu_v16": 0,
+        "competent_tag": 0
+      },
+      "final_stacks": {
+        "balanced_tag": 19700,
+        "calling_station": 0,
+        "nit_folder": 56515,
+        "multi_barrel": 31245,
+        "bot_sohu_v16": 21665,
+        "competent_tag": 30875
+      },
+      "bankroll_remaining": {
+        "balanced_tag": 19700,
+        "calling_station": 0,
+        "nit_folder": 76515,
+        "multi_barrel": 51245,
+        "bot_sohu_v16": 41665,
+        "competent_tag": 50875
+      },
+      "qualification_eligible": {
+        "balanced_tag": true,
+        "calling_station": false,
+        "nit_folder": true,
+        "multi_barrel": true,
+        "bot_sohu_v16": true,
+        "competent_tag": true
+      },
+      "bb_per_100_by_agent": {
+        "balanced_tag": -507.5,
+        "calling_station": -1428.5714285714287,
+        "nit_folder": 912.875,
+        "multi_barrel": 281.125,
+        "bot_sohu_v16": 41.625,
+        "competent_tag": 271.875
+      }
+    },
+    {
+      "chip_delta": {
+        "calling_station": -40000,
+        "nit_folder": -2729,
+        "multi_barrel": 44365,
+        "bot_sohu_v16": 2490,
+        "competent_tag": -8604,
+        "balanced_tag": 4478
+      },
+      "ev_chip_delta": {
+        "calling_station": -40000.0,
+        "nit_folder": -2729.0,
+        "multi_barrel": 44365.0,
+        "bot_sohu_v16": 2490.0,
+        "competent_tag": -8604.0,
+        "balanced_tag": 4478.0
+      },
+      "hands": 20,
+      "timing": {
+        "calling_station": {
+          "max": 2.5999906938523054e-06,
+          "slow": 0
+        },
+        "nit_folder": {
+          "max": 1.5400000847876072e-05,
+          "slow": 0
+        },
+        "multi_barrel": {
+          "max": 0.00012650000280700624,
+          "slow": 0
+        },
+        "bot_sohu_v16": {
+          "max": 0.017140135998488404,
+          "slow": 0
+        },
+        "competent_tag": {
+          "max": 0.0013583020045189187,
+          "slow": 0
+        },
+        "balanced_tag": {
+          "max": 2.95999925583601e-05,
+          "slow": 0
+        }
+      },
+      "errors": {
+        "calling_station": 0,
+        "nit_folder": 0,
+        "multi_barrel": 0,
+        "bot_sohu_v16": 0,
+        "competent_tag": 0,
+        "balanced_tag": 0
+      },
+      "environment_version": "sohu-v1",
+      "competition_config": {
+        "small_blind": 100,
+        "big_blind": 200,
+        "buy_in": 20000,
+        "initial_bankroll": 40000,
+        "automatic_rebuy": true,
+        "max_players": 6,
+        "total_rounds": 1,
+        "hands_per_match": 20,
+        "minimum_hands": 20
+      },
+      "net_result": {
+        "calling_station": -40000,
+        "nit_folder": -2729,
+        "multi_barrel": 44365,
+        "bot_sohu_v16": 2490,
+        "competent_tag": -8604,
+        "balanced_tag": 4478
+      },
+      "hands_played_by_agent": {
+        "calling_station": 9,
+        "nit_folder": 20,
+        "multi_barrel": 20,
+        "bot_sohu_v16": 20,
+        "competent_tag": 20,
+        "balanced_tag": 20
+      },
+      "rebuy_count": {
+        "calling_station": 1,
+        "nit_folder": 0,
+        "multi_barrel": 0,
+        "bot_sohu_v16": 0,
+        "competent_tag": 1,
+        "balanced_tag": 0
+      },
+      "final_stacks": {
+        "calling_station": 0,
+        "nit_folder": 17271,
+        "multi_barrel": 64365,
+        "bot_sohu_v16": 22490,
+        "competent_tag": 31396,
+        "balanced_tag": 24478
+      },
+      "bankroll_remaining": {
+        "calling_station": 0,
+        "nit_folder": 37271,
+        "multi_barrel": 84365,
+        "bot_sohu_v16": 42490,
+        "competent_tag": 31396,
+        "balanced_tag": 44478
+      },
+      "qualification_eligible": {
+        "calling_station": false,
+        "nit_folder": true,
+        "multi_barrel": true,
+        "bot_sohu_v16": true,
+        "competent_tag": true,
+        "balanced_tag": true
+      },
+      "bb_per_100_by_agent": {
+        "calling_station": -2222.222222222222,
+        "nit_folder": -68.225,
+        "multi_barrel": 1109.125,
+        "bot_sohu_v16": 62.25,
+        "competent_tag": -215.1,
+        "balanced_tag": 111.95
+      }
+    },
+    {
+      "chip_delta": {
+        "nit_folder": -1800,
+        "multi_barrel": 175,
+        "bot_sohu_v16": 16923,
+        "competent_tag": 14662,
+        "balanced_tag": 10040,
+        "calling_station": -40000
+      },
+      "ev_chip_delta": {
+        "nit_folder": -1800.0,
+        "multi_barrel": 175.0,
+        "bot_sohu_v16": 16923.0,
+        "competent_tag": 14662.0,
+        "balanced_tag": 10040.0,
+        "calling_station": -40000.0
+      },
+      "hands": 20,
+      "timing": {
+        "nit_folder": {
+          "max": 1.340000017080456e-05,
+          "slow": 0
+        },
+        "multi_barrel": {
+          "max": 3.920000744983554e-05,
+          "slow": 0
+        },
+        "bot_sohu_v16": {
+          "max": 0.015400632008095272,
+          "slow": 0
+        },
+        "competent_tag": {
+          "max": 0.0012162029888713732,
+          "slow": 0
+        },
+        "balanced_tag": {
+          "max": 3.8300000596791506e-05,
+          "slow": 0
+        },
+        "calling_station": {
+          "max": 1.6999983927235007e-06,
+          "slow": 0
+        }
+      },
+      "errors": {
+        "nit_folder": 0,
+        "multi_barrel": 0,
+        "bot_sohu_v16": 0,
+        "competent_tag": 0,
+        "balanced_tag": 0,
+        "calling_station": 0
+      },
+      "environment_version": "sohu-v1",
+      "competition_config": {
+        "small_blind": 100,
+        "big_blind": 200,
+        "buy_in": 20000,
+        "initial_bankroll": 40000,
+        "automatic_rebuy": true,
+        "max_players": 6,
+        "total_rounds": 1,
+        "hands_per_match": 20,
+        "minimum_hands": 20
+      },
+      "net_result": {
+        "nit_folder": -1800,
+        "multi_barrel": 175,
+        "bot_sohu_v16": 16923,
+        "competent_tag": 14662,
+        "balanced_tag": 10040,
+        "calling_station": -40000
+      },
+      "hands_played_by_agent": {
+        "nit_folder": 20,
+        "multi_barrel": 20,
+        "bot_sohu_v16": 20,
+        "competent_tag": 20,
+        "balanced_tag": 20,
+        "calling_station": 15
+      },
+      "rebuy_count": {
+        "nit_folder": 0,
+        "multi_barrel": 0,
+        "bot_sohu_v16": 0,
+        "competent_tag": 0,
+        "balanced_tag": 0,
+        "calling_station": 1
+      },
+      "final_stacks": {
+        "nit_folder": 18200,
+        "multi_barrel": 20175,
+        "bot_sohu_v16": 36923,
+        "competent_tag": 34662,
+        "balanced_tag": 30040,
+        "calling_station": 0
+      },
+      "bankroll_remaining": {
+        "nit_folder": 38200,
+        "multi_barrel": 40175,
+        "bot_sohu_v16": 56923,
+        "competent_tag": 54662,
+        "balanced_tag": 50040,
+        "calling_station": 0
+      },
+      "qualification_eligible": {
+        "nit_folder": true,
+        "multi_barrel": true,
+        "bot_sohu_v16": true,
+        "competent_tag": true,
+        "balanced_tag": true,
+        "calling_station": false
+      },
+      "bb_per_100_by_agent": {
+        "nit_folder": -45.0,
+        "multi_barrel": 4.375,
+        "bot_sohu_v16": 423.075,
+        "competent_tag": 366.55,
+        "balanced_tag": 251.0,
+        "calling_station": -1333.3333333333333
+      }
+    },
+    {
+      "chip_delta": {
+        "multi_barrel": -400,
+        "bot_sohu_v16": 14119,
+        "competent_tag": -1200,
+        "balanced_tag": -2520,
+        "calling_station": -17680,
+        "nit_folder": 7681
+      },
+      "ev_chip_delta": {
+        "multi_barrel": -400.0,
+        "bot_sohu_v16": 14119.0,
+        "competent_tag": -1200.0,
+        "balanced_tag": -2520.0,
+        "calling_station": -17680.0,
+        "nit_folder": 7681.0
+      },
+      "hands": 20,
+      "timing": {
+        "multi_barrel": {
+          "max": 8.47000046633184e-05,
+          "slow": 0
+        },
+        "bot_sohu_v16": {
+          "max": 0.0179008370032534,
+          "slow": 0
+        },
+        "competent_tag": {
+          "max": 0.0021032040094723925,
+          "slow": 0
+        },
+        "balanced_tag": {
+          "max": 2.5000001187436283e-05,
+          "slow": 0
+        },
+        "calling_station": {
+          "max": 2.9699993319809437e-05,
+          "slow": 0
+        },
+        "nit_folder": {
+          "max": 1.0900010238401592e-05,
+          "slow": 0
+        }
+      },
+      "errors": {
+        "multi_barrel": 0,
+        "bot_sohu_v16": 0,
+        "competent_tag": 0,
+        "balanced_tag": 0,
+        "calling_station": 0,
+        "nit_folder": 0
+      },
+      "environment_version": "sohu-v1",
+      "competition_config": {
+        "small_blind": 100,
+        "big_blind": 200,
+        "buy_in": 20000,
+        "initial_bankroll": 40000,
+        "automatic_rebuy": true,
+        "max_players": 6,
+        "total_rounds": 1,
+        "hands_per_match": 20,
+        "minimum_hands": 20
+      },
+      "net_result": {
+        "multi_barrel": -400,
+        "bot_sohu_v16": 14119,
+        "competent_tag": -1200,
+        "balanced_tag": -2520,
+        "calling_station": -17680,
+        "nit_folder": 7681
+      },
+      "hands_played_by_agent": {
+        "multi_barrel": 20,
+        "bot_sohu_v16": 20,
+        "competent_tag": 20,
+        "balanced_tag": 20,
+        "calling_station": 20,
+        "nit_folder": 20
+      },
+      "rebuy_count": {
+        "multi_barrel": 0,
+        "bot_sohu_v16": 0,
+        "competent_tag": 0,
+        "balanced_tag": 0,
+        "calling_station": 1,
+        "nit_folder": 0
+      },
+      "final_stacks": {
+        "multi_barrel": 19600,
+        "bot_sohu_v16": 34119,
+        "competent_tag": 18800,
+        "balanced_tag": 17480,
+        "calling_station": 22320,
+        "nit_folder": 27681
+      },
+      "bankroll_remaining": {
+        "multi_barrel": 39600,
+        "bot_sohu_v16": 54119,
+        "competent_tag": 38800,
+        "balanced_tag": 37480,
+        "calling_station": 22320,
+        "nit_folder": 47681
+      },
+      "qualification_eligible": {
+        "multi_barrel": true,
+        "bot_sohu_v16": true,
+        "competent_tag": true,
+        "balanced_tag": true,
+        "calling_station": true,
+        "nit_folder": true
+      },
+      "bb_per_100_by_agent": {
+        "multi_barrel": -10.0,
+        "bot_sohu_v16": 352.975,
+        "competent_tag": -30.0,
+        "balanced_tag": -63.0,
+        "calling_station": -442.0,
+        "nit_folder": 192.025
+      }
+    },
+    {
+      "chip_delta": {
+        "bot_sohu_v16": 1499,
+        "competent_tag": 8055,
+        "balanced_tag": -750,
+        "calling_station": -15581,
+        "nit_folder": -1268,
+        "multi_barrel": 8045
+      },
+      "ev_chip_delta": {
+        "bot_sohu_v16": 1499.0,
+        "competent_tag": 8055.0,
+        "balanced_tag": -750.0,
+        "calling_station": -15581.0,
+        "nit_folder": -1268.0,
+        "multi_barrel": 8045.0
+      },
+      "hands": 20,
+      "timing": {
+        "bot_sohu_v16": {
+          "max": 0.016314032996888272,
+          "slow": 0
+        },
+        "competent_tag": {
+          "max": 0.0019354039977770299,
+          "slow": 0
+        },
+        "balanced_tag": {
+          "max": 3.4599986975081265e-05,
+          "slow": 0
+        },
+        "calling_station": {
+          "max": 1.7999991541728377e-06,
+          "slow": 0
+        },
+        "nit_folder": {
+          "max": 1.2699994840659201e-05,
+          "slow": 0
+        },
+        "multi_barrel": {
+          "max": 0.00029260000155773014,
+          "slow": 0
+        }
+      },
+      "errors": {
+        "bot_sohu_v16": 0,
+        "competent_tag": 0,
+        "balanced_tag": 0,
+        "calling_station": 0,
+        "nit_folder": 0,
+        "multi_barrel": 0
+      },
+      "environment_version": "sohu-v1",
+      "competition_config": {
+        "small_blind": 100,
+        "big_blind": 200,
+        "buy_in": 20000,
+        "initial_bankroll": 40000,
+        "automatic_rebuy": true,
+        "max_players": 6,
+        "total_rounds": 1,
+        "hands_per_match": 20,
+        "minimum_hands": 20
+      },
+      "net_result": {
+        "bot_sohu_v16": 1499,
+        "competent_tag": 8055,
+        "balanced_tag": -750,
+        "calling_station": -15581,
+        "nit_folder": -1268,
+        "multi_barrel": 8045
+      },
+      "hands_played_by_agent": {
+        "bot_sohu_v16": 20,
+        "competent_tag": 20,
+        "balanced_tag": 20,
+        "calling_station": 20,
+        "nit_folder": 20,
+        "multi_barrel": 20
+      },
+      "rebuy_count": {
+        "bot_sohu_v16": 0,
+        "competent_tag": 0,
+        "balanced_tag": 0,
+        "calling_station": 1,
+        "nit_folder": 0,
+        "multi_barrel": 0
+      },
+      "final_stacks": {
+        "bot_sohu_v16": 21499,
+        "competent_tag": 28055,
+        "balanced_tag": 19250,
+        "calling_station": 24419,
+        "nit_folder": 18732,
+        "multi_barrel": 28045
+      },
+      "bankroll_remaining": {
+        "bot_sohu_v16": 41499,
+        "competent_tag": 48055,
+        "balanced_tag": 39250,
+        "calling_station": 24419,
+        "nit_folder": 38732,
+        "multi_barrel": 48045
+      },
+      "qualification_eligible": {
+        "bot_sohu_v16": true,
+        "competent_tag": true,
+        "balanced_tag": true,
+        "calling_station": true,
+        "nit_folder": true,
+        "multi_barrel": true
+      },
+      "bb_per_100_by_agent": {
+        "bot_sohu_v16": 37.475,
+        "competent_tag": 201.375,
+        "balanced_tag": -18.75,
+        "calling_station": -389.525,
+        "nit_folder": -31.7,
+        "multi_barrel": 201.125
+      }
+    },
+    {
+      "chip_delta": {
+        "competent_tag": 9373,
+        "balanced_tag": -8900,
+        "calling_station": -40000,
+        "nit_folder": -700,
+        "multi_barrel": 32706,
+        "bot_sohu_v16": 7521
+      },
+      "ev_chip_delta": {
+        "competent_tag": 9373.0,
+        "balanced_tag": -8900.0,
+        "calling_station": -40000.0,
+        "nit_folder": -700.0,
+        "multi_barrel": 32706.0,
+        "bot_sohu_v16": 7521.0
+      },
+      "hands": 20,
+      "timing": {
+        "competent_tag": {
+          "max": 0.0012859030102845281,
+          "slow": 0
+        },
+        "balanced_tag": {
+          "max": 3.730099706444889e-05,
+          "slow": 0
+        },
+        "calling_station": {
+          "max": 1.5999976312741637e-06,
+          "slow": 0
+        },
+        "nit_folder": {
+          "max": 1.0000003385357559e-05,
+          "slow": 0
+        },
+        "multi_barrel": {
+          "max": 6.839999696239829e-05,
+          "slow": 0
+        },
+        "bot_sohu_v16": {
+          "max": 0.016135633995872922,
+          "slow": 0
+        }
+      },
+      "errors": {
+        "competent_tag": 0,
+        "balanced_tag": 0,
+        "calling_station": 0,
+        "nit_folder": 0,
+        "multi_barrel": 0,
+        "bot_sohu_v16": 0
+      },
+      "environment_version": "sohu-v1",
+      "competition_config": {
+        "small_blind": 100,
+        "big_blind": 200,
+        "buy_in": 20000,
+        "initial_bankroll": 40000,
+        "automatic_rebuy": true,
+        "max_players": 6,
+        "total_rounds": 1,
+        "hands_per_match": 20,
+        "minimum_hands": 20
+      },
+      "net_result": {
+        "competent_tag": 9373,
+        "balanced_tag": -8900,
+        "calling_station": -40000,
+        "nit_folder": -700,
+        "multi_barrel": 32706,
+        "bot_sohu_v16": 7521
+      },
+      "hands_played_by_agent": {
+        "competent_tag": 20,
+        "balanced_tag": 20,
+        "calling_station": 11,
+        "nit_folder": 20,
+        "multi_barrel": 20,
+        "bot_sohu_v16": 20
+      },
+      "rebuy_count": {
+        "competent_tag": 0,
+        "balanced_tag": 0,
+        "calling_station": 1,
+        "nit_folder": 0,
+        "multi_barrel": 0,
+        "bot_sohu_v16": 0
+      },
+      "final_stacks": {
+        "competent_tag": 29373,
+        "balanced_tag": 11100,
+        "calling_station": 0,
+        "nit_folder": 19300,
+        "multi_barrel": 52706,
+        "bot_sohu_v16": 27521
+      },
+      "bankroll_remaining": {
+        "competent_tag": 49373,
+        "balanced_tag": 31100,
+        "calling_station": 0,
+        "nit_folder": 39300,
+        "multi_barrel": 72706,
+        "bot_sohu_v16": 47521
+      },
+      "qualification_eligible": {
+        "competent_tag": true,
+        "balanced_tag": true,
+        "calling_station": false,
+        "nit_folder": true,
+        "multi_barrel": true,
+        "bot_sohu_v16": true
+      },
+      "bb_per_100_by_agent": {
+        "competent_tag": 234.325,
+        "balanced_tag": -222.5,
+        "calling_station": -1818.1818181818182,
+        "nit_folder": -17.5,
+        "multi_barrel": 817.65,
+        "bot_sohu_v16": 188.025
+      }
+    },
+    {
+      "chip_delta": {
+        "balanced_tag": 68722,
+        "calling_station": -40000,
+        "nit_folder": -160,
+        "multi_barrel": -700,
+        "bot_sohu_v16": 3647,
+        "competent_tag": -31509
+      },
+      "ev_chip_delta": {
+        "balanced_tag": 68722.0,
+        "calling_station": -38317.7605,
+        "nit_folder": -160.0,
+        "multi_barrel": -700.0,
+        "bot_sohu_v16": 1964.7605,
+        "competent_tag": -31509.0
+      },
+      "hands": 20,
+      "timing": {
+        "balanced_tag": {
+          "max": 2.8201000532135367e-05,
+          "slow": 0
+        },
+        "calling_station": {
+          "max": 1.8999999156221747e-06,
+          "slow": 0
+        },
+        "nit_folder": {
+          "max": 8.699993486516178e-06,
+          "slow": 0
+        },
+        "multi_barrel": {
+          "max": 2.8399997972883284e-05,
+          "slow": 0
+        },
+        "bot_sohu_v16": {
+          "max": 0.016693134006345645,
+          "slow": 0
+        },
+        "competent_tag": {
+          "max": 0.0012739029916701838,
+          "slow": 0
+        }
+      },
+      "errors": {
+        "balanced_tag": 0,
+        "calling_station": 0,
+        "nit_folder": 0,
+        "multi_barrel": 0,
+        "bot_sohu_v16": 0,
+        "competent_tag": 0
+      },
+      "environment_version": "sohu-v1",
+      "competition_config": {
+        "small_blind": 100,
+        "big_blind": 200,
+        "buy_in": 20000,
+        "initial_bankroll": 40000,
+        "automatic_rebuy": true,
+        "max_players": 6,
+        "total_rounds": 1,
+        "hands_per_match": 20,
+        "minimum_hands": 20
+      },
+      "net_result": {
+        "balanced_tag": 68722,
+        "calling_station": -40000,
+        "nit_folder": -160,
+        "multi_barrel": -700,
+        "bot_sohu_v16": 3647,
+        "competent_tag": -31509
+      },
+      "hands_played_by_agent": {
+        "balanced_tag": 20,
+        "calling_station": 11,
+        "nit_folder": 20,
+        "multi_barrel": 20,
+        "bot_sohu_v16": 20,
+        "competent_tag": 20
+      },
+      "rebuy_count": {
+        "balanced_tag": 0,
+        "calling_station": 1,
+        "nit_folder": 0,
+        "multi_barrel": 0,
+        "bot_sohu_v16": 0,
+        "competent_tag": 1
+      },
+      "final_stacks": {
+        "balanced_tag": 88722,
+        "calling_station": 0,
+        "nit_folder": 19840,
+        "multi_barrel": 19300,
+        "bot_sohu_v16": 23647,
+        "competent_tag": 8491
+      },
+      "bankroll_remaining": {
+        "balanced_tag": 108722,
+        "calling_station": 0,
+        "nit_folder": 39840,
+        "multi_barrel": 39300,
+        "bot_sohu_v16": 43647,
+        "competent_tag": 8491
+      },
+      "qualification_eligible": {
+        "balanced_tag": true,
+        "calling_station": false,
+        "nit_folder": true,
+        "multi_barrel": true,
+        "bot_sohu_v16": true,
+        "competent_tag": true
+      },
+      "bb_per_100_by_agent": {
+        "balanced_tag": 1718.05,
+        "calling_station": -1818.1818181818182,
+        "nit_folder": -4.0,
+        "multi_barrel": -17.5,
+        "bot_sohu_v16": 91.175,
+        "competent_tag": -787.725
+      }
+    },
+    {
+      "chip_delta": {
+        "calling_station": -29075,
+        "nit_folder": 26019,
+        "multi_barrel": 2836,
+        "bot_sohu_v16": -1320,
+        "competent_tag": 13136,
+        "balanced_tag": -11596
+      },
+      "ev_chip_delta": {
+        "calling_station": -29075.0,
+        "nit_folder": 26019.0,
+        "multi_barrel": 2836.0,
+        "bot_sohu_v16": -1320.0,
+        "competent_tag": 13136.0,
+        "balanced_tag": -11596.0
+      },
+      "hands": 20,
+      "timing": {
+        "calling_station": {
+          "max": 2.5009940145537257e-06,
+          "slow": 0
+        },
+        "nit_folder": {
+          "max": 1.060000795405358e-05,
+          "slow": 0
+        },
+        "multi_barrel": {
+          "max": 4.190100298728794e-05,
+          "slow": 0
+        },
+        "bot_sohu_v16": {
+          "max": 0.018997840001247823,
+          "slow": 0
+        },
+        "competent_tag": {
+          "max": 0.001527403001091443,
+          "slow": 0
+        },
+        "balanced_tag": {
+          "max": 3.15000070258975e-05,
+          "slow": 0
+        }
+      },
+      "errors": {
+        "calling_station": 0,
+        "nit_folder": 0,
+        "multi_barrel": 0,
+        "bot_sohu_v16": 0,
+        "competent_tag": 0,
+        "balanced_tag": 0
+      },
+      "environment_version": "sohu-v1",
+      "competition_config": {
+        "small_blind": 100,
+        "big_blind": 200,
+        "buy_in": 20000,
+        "initial_bankroll": 40000,
+        "automatic_rebuy": true,
+        "max_players": 6,
+        "total_rounds": 1,
+        "hands_per_match": 20,
+        "minimum_hands": 20
+      },
+      "net_result": {
+        "calling_station": -29075,
+        "nit_folder": 26019,
+        "multi_barrel": 2836,
+        "bot_sohu_v16": -1320,
+        "competent_tag": 13136,
+        "balanced_tag": -11596
+      },
+      "hands_played_by_agent": {
+        "calling_station": 20,
+        "nit_folder": 20,
+        "multi_barrel": 20,
+        "bot_sohu_v16": 20,
+        "competent_tag": 20,
+        "balanced_tag": 20
+      },
+      "rebuy_count": {
+        "calling_station": 1,
+        "nit_folder": 0,
+        "multi_barrel": 0,
+        "bot_sohu_v16": 0,
+        "competent_tag": 0,
+        "balanced_tag": 0
+      },
+      "final_stacks": {
+        "calling_station": 10925,
+        "nit_folder": 46019,
+        "multi_barrel": 22836,
+        "bot_sohu_v16": 18680,
+        "competent_tag": 33136,
+        "balanced_tag": 8404
+      },
+      "bankroll_remaining": {
+        "calling_station": 10925,
+        "nit_folder": 66019,
+        "multi_barrel": 42836,
+        "bot_sohu_v16": 38680,
+        "competent_tag": 53136,
+        "balanced_tag": 28404
+      },
+      "qualification_eligible": {
+        "calling_station": true,
+        "nit_folder": true,
+        "multi_barrel": true,
+        "bot_sohu_v16": true,
+        "competent_tag": true,
+        "balanced_tag": true
+      },
+      "bb_per_100_by_agent": {
+        "calling_station": -726.875,
+        "nit_folder": 650.475,
+        "multi_barrel": 70.9,
+        "bot_sohu_v16": -33.0,
+        "competent_tag": 328.4,
+        "balanced_tag": -289.9
+      }
+    },
+    {
+      "chip_delta": {
+        "nit_folder": -20400,
+        "multi_barrel": 27321,
+        "bot_sohu_v16": 3055,
+        "competent_tag": 13261,
+        "balanced_tag": 4939,
+        "calling_station": -28176
+      },
+      "ev_chip_delta": {
+        "nit_folder": -1959.1775,
+        "multi_barrel": 4375.8,
+        "bot_sohu_v16": 3055.0,
+        "competent_tag": 13261.0,
+        "balanced_tag": 4939.0,
+        "calling_station": -23671.6225
+      },
+      "hands": 20,
+      "timing": {
+        "nit_folder": {
+          "max": 9.200011845678091e-06,
+          "slow": 0
+        },
+        "multi_barrel": {
+          "max": 3.470000228844583e-05,
+          "slow": 0
+        },
+        "bot_sohu_v16": {
+          "max": 0.015923233004286885,
+          "slow": 0
+        },
+        "competent_tag": {
+          "max": 0.0012371019984129816,
+          "slow": 0
+        },
+        "balanced_tag": {
+          "max": 0.0001392010017298162,
+          "slow": 0
+        },
+        "calling_station": {
+          "max": 1.0799994925037026e-05,
+          "slow": 0
+        }
+      },
+      "errors": {
+        "nit_folder": 0,
+        "multi_barrel": 0,
+        "bot_sohu_v16": 0,
+        "competent_tag": 0,
+        "balanced_tag": 0,
+        "calling_station": 0
+      },
+      "environment_version": "sohu-v1",
+      "competition_config": {
+        "small_blind": 100,
+        "big_blind": 200,
+        "buy_in": 20000,
+        "initial_bankroll": 40000,
+        "automatic_rebuy": true,
+        "max_players": 6,
+        "total_rounds": 1,
+        "hands_per_match": 20,
+        "minimum_hands": 20
+      },
+      "net_result": {
+        "nit_folder": -20400,
+        "multi_barrel": 27321,
+        "bot_sohu_v16": 3055,
+        "competent_tag": 13261,
+        "balanced_tag": 4939,
+        "calling_station": -28176
+      },
+      "hands_played_by_agent": {
+        "nit_folder": 20,
+        "multi_barrel": 20,
+        "bot_sohu_v16": 20,
+        "competent_tag": 20,
+        "balanced_tag": 20,
+        "calling_station": 20
+      },
+      "rebuy_count": {
+        "nit_folder": 1,
+        "multi_barrel": 0,
+        "bot_sohu_v16": 0,
+        "competent_tag": 0,
+        "balanced_tag": 0,
+        "calling_station": 1
+      },
+      "final_stacks": {
+        "nit_folder": 19600,
+        "multi_barrel": 47321,
+        "bot_sohu_v16": 23055,
+        "competent_tag": 33261,
+        "balanced_tag": 24939,
+        "calling_station": 11824
+      },
+      "bankroll_remaining": {
+        "nit_folder": 19600,
+        "multi_barrel": 67321,
+        "bot_sohu_v16": 43055,
+        "competent_tag": 53261,
+        "balanced_tag": 44939,
+        "calling_station": 11824
+      },
+      "qualification_eligible": {
+        "nit_folder": true,
+        "multi_barrel": true,
+        "bot_sohu_v16": true,
+        "competent_tag": true,
+        "balanced_tag": true,
+        "calling_station": true
+      },
+      "bb_per_100_by_agent": {
+        "nit_folder": -510.0,
+        "multi_barrel": 683.025,
+        "bot_sohu_v16": 76.375,
+        "competent_tag": 331.525,
+        "balanced_tag": 123.475,
+        "calling_station": -704.4
+      }
+    },
+    {
+      "chip_delta": {
+        "multi_barrel": 3255,
+        "bot_sohu_v16": -1100,
+        "competent_tag": -2320,
+        "balanced_tag": 38636,
+        "calling_station": -40000,
+        "nit_folder": 1529
+      },
+      "ev_chip_delta": {
+        "multi_barrel": 3255.0,
+        "bot_sohu_v16": -1100.0,
+        "competent_tag": -2320.0,
+        "balanced_tag": 38636.0,
+        "calling_station": -40000.0,
+        "nit_folder": 1529.0
+      },
+      "hands": 20,
+      "timing": {
+        "multi_barrel": {
+          "max": 2.4599998141638935e-05,
+          "slow": 0
+        },
+        "bot_sohu_v16": {
+          "max": 0.01622333399427589,
+          "slow": 0
+        },
+        "competent_tag": {
+          "max": 0.001194402007968165,
+          "slow": 0
+        },
+        "balanced_tag": {
+          "max": 5.469999450724572e-05,
+          "slow": 0
+        },
+        "calling_station": {
+          "max": 1.6999983927235007e-06,
+          "slow": 0
+        },
+        "nit_folder": {
+          "max": 1.0899995686486363e-05,
+          "slow": 0
+        }
+      },
+      "errors": {
+        "multi_barrel": 0,
+        "bot_sohu_v16": 0,
+        "competent_tag": 0,
+        "balanced_tag": 0,
+        "calling_station": 0,
+        "nit_folder": 0
+      },
+      "environment_version": "sohu-v1",
+      "competition_config": {
+        "small_blind": 100,
+        "big_blind": 200,
+        "buy_in": 20000,
+        "initial_bankroll": 40000,
+        "automatic_rebuy": true,
+        "max_players": 6,
+        "total_rounds": 1,
+        "hands_per_match": 20,
+        "minimum_hands": 20
+      },
+      "net_result": {
+        "multi_barrel": 3255,
+        "bot_sohu_v16": -1100,
+        "competent_tag": -2320,
+        "balanced_tag": 38636,
+        "calling_station": -40000,
+        "nit_folder": 1529
+      },
+      "hands_played_by_agent": {
+        "multi_barrel": 20,
+        "bot_sohu_v16": 20,
+        "competent_tag": 20,
+        "balanced_tag": 20,
+        "calling_station": 18,
+        "nit_folder": 20
+      },
+      "rebuy_count": {
+        "multi_barrel": 0,
+        "bot_sohu_v16": 0,
+        "competent_tag": 0,
+        "balanced_tag": 0,
+        "calling_station": 1,
+        "nit_folder": 0
+      },
+      "final_stacks": {
+        "multi_barrel": 23255,
+        "bot_sohu_v16": 18900,
+        "competent_tag": 17680,
+        "balanced_tag": 58636,
+        "calling_station": 0,
+        "nit_folder": 21529
+      },
+      "bankroll_remaining": {
+        "multi_barrel": 43255,
+        "bot_sohu_v16": 38900,
+        "competent_tag": 37680,
+        "balanced_tag": 78636,
+        "calling_station": 0,
+        "nit_folder": 41529
+      },
+      "qualification_eligible": {
+        "multi_barrel": true,
+        "bot_sohu_v16": true,
+        "competent_tag": true,
+        "balanced_tag": true,
+        "calling_station": false,
+        "nit_folder": true
+      },
+      "bb_per_100_by_agent": {
+        "multi_barrel": 81.375,
+        "bot_sohu_v16": -27.5,
+        "competent_tag": -58.0,
+        "balanced_tag": 965.9,
+        "calling_station": -1111.111111111111,
+        "nit_folder": 38.225
+      }
+    },
+    {
+      "chip_delta": {
+        "bot_sohu_v16": 9034,
+        "competent_tag": 7267,
+        "balanced_tag": 12433,
+        "calling_station": -40000,
+        "nit_folder": -900,
+        "multi_barrel": 12166
+      },
+      "ev_chip_delta": {
+        "bot_sohu_v16": 9034.0,
+        "competent_tag": 7267.0,
+        "balanced_tag": 12433.0,
+        "calling_station": -40000.0,
+        "nit_folder": -900.0,
+        "multi_barrel": 12166.0
+      },
+      "hands": 20,
+      "timing": {
+        "bot_sohu_v16": {
+          "max": 0.017431535990908742,
+          "slow": 0
+        },
+        "competent_tag": {
+          "max": 0.0013337029959075153,
+          "slow": 0
+        },
+        "balanced_tag": {
+          "max": 3.940000897273421e-05,
+          "slow": 0
+        },
+        "calling_station": {
+          "max": 2.0000006770715117e-06,
+          "slow": 0
+        },
+        "nit_folder": {
+          "max": 4.9000082071870565e-06,
+          "slow": 0
+        },
+        "multi_barrel": {
+          "max": 2.950000634882599e-05,
+          "slow": 0
+        }
+      },
+      "errors": {
+        "bot_sohu_v16": 0,
+        "competent_tag": 0,
+        "balanced_tag": 0,
+        "calling_station": 0,
+        "nit_folder": 0,
+        "multi_barrel": 0
+      },
+      "environment_version": "sohu-v1",
+      "competition_config": {
+        "small_blind": 100,
+        "big_blind": 200,
+        "buy_in": 20000,
+        "initial_bankroll": 40000,
+        "automatic_rebuy": true,
+        "max_players": 6,
+        "total_rounds": 1,
+        "hands_per_match": 20,
+        "minimum_hands": 20
+      },
+      "net_result": {
+        "bot_sohu_v16": 9034,
+        "competent_tag": 7267,
+        "balanced_tag": 12433,
+        "calling_station": -40000,
+        "nit_folder": -900,
+        "multi_barrel": 12166
+      },
+      "hands_played_by_agent": {
+        "bot_sohu_v16": 20,
+        "competent_tag": 20,
+        "balanced_tag": 20,
+        "calling_station": 18,
+        "nit_folder": 20,
+        "multi_barrel": 20
+      },
+      "rebuy_count": {
+        "bot_sohu_v16": 0,
+        "competent_tag": 0,
+        "balanced_tag": 0,
+        "calling_station": 1,
+        "nit_folder": 0,
+        "multi_barrel": 0
+      },
+      "final_stacks": {
+        "bot_sohu_v16": 29034,
+        "competent_tag": 27267,
+        "balanced_tag": 32433,
+        "calling_station": 0,
+        "nit_folder": 19100,
+        "multi_barrel": 32166
+      },
+      "bankroll_remaining": {
+        "bot_sohu_v16": 49034,
+        "competent_tag": 47267,
+        "balanced_tag": 52433,
+        "calling_station": 0,
+        "nit_folder": 39100,
+        "multi_barrel": 52166
+      },
+      "qualification_eligible": {
+        "bot_sohu_v16": true,
+        "competent_tag": true,
+        "balanced_tag": true,
+        "calling_station": false,
+        "nit_folder": true,
+        "multi_barrel": true
+      },
+      "bb_per_100_by_agent": {
+        "bot_sohu_v16": 225.85,
+        "competent_tag": 181.675,
+        "balanced_tag": 310.825,
+        "calling_station": -1111.111111111111,
+        "nit_folder": -22.5,
+        "multi_barrel": 304.15
+      }
+    },
+    {
+      "chip_delta": {
+        "competent_tag": -25,
+        "balanced_tag": 1620,
+        "calling_station": 19355,
+        "nit_folder": -21040,
+        "multi_barrel": 14730,
+        "bot_sohu_v16": -14640
+      },
+      "ev_chip_delta": {
+        "competent_tag": -25.0,
+        "balanced_tag": 1620.0,
+        "calling_station": 19355.0,
+        "nit_folder": -21040.0,
+        "multi_barrel": 14730.0,
+        "bot_sohu_v16": -14640.0
+      },
+      "hands": 20,
+      "timing": {
+        "competent_tag": {
+          "max": 0.001053202009643428,
+          "slow": 0
+        },
+        "balanced_tag": {
+          "max": 2.750000567175448e-05,
+          "slow": 0
+        },
+        "calling_station": {
+          "max": 1.7999991541728377e-06,
+          "slow": 0
+        },
+        "nit_folder": {
+          "max": 9.800001862458885e-06,
+          "slow": 0
+        },
+        "multi_barrel": {
+          "max": 3.290000313427299e-05,
+          "slow": 0
+        },
+        "bot_sohu_v16": {
+          "max": 0.012717926991172135,
+          "slow": 0
+        }
+      },
+      "errors": {
+        "competent_tag": 0,
+        "balanced_tag": 0,
+        "calling_station": 0,
+        "nit_folder": 0,
+        "multi_barrel": 0,
+        "bot_sohu_v16": 0
+      },
+      "environment_version": "sohu-v1",
+      "competition_config": {
+        "small_blind": 100,
+        "big_blind": 200,
+        "buy_in": 20000,
+        "initial_bankroll": 40000,
+        "automatic_rebuy": true,
+        "max_players": 6,
+        "total_rounds": 1,
+        "hands_per_match": 20,
+        "minimum_hands": 20
+      },
+      "net_result": {
+        "competent_tag": -25,
+        "balanced_tag": 1620,
+        "calling_station": 19355,
+        "nit_folder": -21040,
+        "multi_barrel": 14730,
+        "bot_sohu_v16": -14640
+      },
+      "hands_played_by_agent": {
+        "competent_tag": 20,
+        "balanced_tag": 20,
+        "calling_station": 20,
+        "nit_folder": 20,
+        "multi_barrel": 20,
+        "bot_sohu_v16": 20
+      },
+      "rebuy_count": {
+        "competent_tag": 0,
+        "balanced_tag": 1,
+        "calling_station": 0,
+        "nit_folder": 1,
+        "multi_barrel": 0,
+        "bot_sohu_v16": 0
+      },
+      "final_stacks": {
+        "competent_tag": 19975,
+        "balanced_tag": 41620,
+        "calling_station": 39355,
+        "nit_folder": 18960,
+        "multi_barrel": 34730,
+        "bot_sohu_v16": 5360
+      },
+      "bankroll_remaining": {
+        "competent_tag": 39975,
+        "balanced_tag": 41620,
+        "calling_station": 59355,
+        "nit_folder": 18960,
+        "multi_barrel": 54730,
+        "bot_sohu_v16": 25360
+      },
+      "qualification_eligible": {
+        "competent_tag": true,
+        "balanced_tag": true,
+        "calling_station": true,
+        "nit_folder": true,
+        "multi_barrel": true,
+        "bot_sohu_v16": true
+      },
+      "bb_per_100_by_agent": {
+        "competent_tag": -0.625,
+        "balanced_tag": 40.5,
+        "calling_station": 483.875,
+        "nit_folder": -526.0,
+        "multi_barrel": 368.25,
+        "bot_sohu_v16": -366.0
+      }
+    },
+    {
+      "chip_delta": {
+        "balanced_tag": -2232,
+        "calling_station": -467,
+        "nit_folder": -400,
+        "multi_barrel": 3959,
+        "bot_sohu_v16": -1010,
+        "competent_tag": 150
+      },
+      "ev_chip_delta": {
+        "balanced_tag": -2232.0,
+        "calling_station": -467.0,
+        "nit_folder": -400.0,
+        "multi_barrel": 3959.0,
+        "bot_sohu_v16": -1010.0,
+        "competent_tag": 150.0
+      },
+      "hands": 20,
+      "timing": {
+        "balanced_tag": {
+          "max": 3.700000524986535e-05,
+          "slow": 0
+        },
+        "calling_station": {
+          "max": 2.7000060072168708e-06,
+          "slow": 0
+        },
+        "nit_folder": {
+          "max": 2.0499996026046574e-05,
+          "slow": 0
+        },
+        "multi_barrel": {
+          "max": 4.410000110510737e-05,
+          "slow": 0
+        },
+        "bot_sohu_v16": {
+          "max": 0.018267838007886894,
+          "slow": 0
+        },
+        "competent_tag": {
+          "max": 0.0012487030035117641,
+          "slow": 0
+        }
+      },
+      "errors": {
+        "balanced_tag": 0,
+        "calling_station": 0,
+        "nit_folder": 0,
+        "multi_barrel": 0,
+        "bot_sohu_v16": 0,
+        "competent_tag": 0
+      },
+      "environment_version": "sohu-v1",
+      "competition_config": {
+        "small_blind": 100,
+        "big_blind": 200,
+        "buy_in": 20000,
+        "initial_bankroll": 40000,
+        "automatic_rebuy": true,
+        "max_players": 6,
+        "total_rounds": 1,
+        "hands_per_match": 20,
+        "minimum_hands": 20
+      },
+      "net_result": {
+        "balanced_tag": -2232,
+        "calling_station": -467,
+        "nit_folder": -400,
+        "multi_barrel": 3959,
+        "bot_sohu_v16": -1010,
+        "competent_tag": 150
+      },
+      "hands_played_by_agent": {
+        "balanced_tag": 20,
+        "calling_station": 20,
+        "nit_folder": 20,
+        "multi_barrel": 20,
+        "bot_sohu_v16": 20,
+        "competent_tag": 20
+      },
+      "rebuy_count": {
+        "balanced_tag": 0,
+        "calling_station": 0,
+        "nit_folder": 0,
+        "multi_barrel": 0,
+        "bot_sohu_v16": 0,
+        "competent_tag": 0
+      },
+      "final_stacks": {
+        "balanced_tag": 17768,
+        "calling_station": 19533,
+        "nit_folder": 19600,
+        "multi_barrel": 23959,
+        "bot_sohu_v16": 18990,
+        "competent_tag": 20150
+      },
+      "bankroll_remaining": {
+        "balanced_tag": 37768,
+        "calling_station": 39533,
+        "nit_folder": 39600,
+        "multi_barrel": 43959,
+        "bot_sohu_v16": 38990,
+        "competent_tag": 40150
+      },
+      "qualification_eligible": {
+        "balanced_tag": true,
+        "calling_station": true,
+        "nit_folder": true,
+        "multi_barrel": true,
+        "bot_sohu_v16": true,
+        "competent_tag": true
+      },
+      "bb_per_100_by_agent": {
+        "balanced_tag": -55.8,
+        "calling_station": -11.675,
+        "nit_folder": -10.0,
+        "multi_barrel": 98.975,
+        "bot_sohu_v16": -25.25,
+        "competent_tag": 3.75
+      }
+    },
+    {
+      "chip_delta": {
+        "calling_station": -40000,
+        "nit_folder": 140,
+        "multi_barrel": 3355,
+        "bot_sohu_v16": 37476,
+        "competent_tag": -6890,
+        "balanced_tag": 5919
+      },
+      "ev_chip_delta": {
+        "calling_station": -40000.0,
+        "nit_folder": 140.0,
+        "multi_barrel": 3355.0,
+        "bot_sohu_v16": 37476.0,
+        "competent_tag": -6890.0,
+        "balanced_tag": 5919.0
+      },
+      "hands": 20,
+      "timing": {
+        "calling_station": {
+          "max": 2.2999884095042944e-06,
+          "slow": 0
+        },
+        "nit_folder": {
+          "max": 1.0799994925037026e-05,
+          "slow": 0
+        },
+        "multi_barrel": {
+          "max": 2.3800996132194996e-05,
+          "slow": 0
+        },
+        "bot_sohu_v16": {
+          "max": 0.012453825009288266,
+          "slow": 0
+        },
+        "competent_tag": {
+          "max": 0.0013922030047979206,
+          "slow": 0
+        },
+        "balanced_tag": {
+          "max": 2.750000567175448e-05,
+          "slow": 0
+        }
+      },
+      "errors": {
+        "calling_station": 0,
+        "nit_folder": 0,
+        "multi_barrel": 0,
+        "bot_sohu_v16": 0,
+        "competent_tag": 0,
+        "balanced_tag": 0
+      },
+      "environment_version": "sohu-v1",
+      "competition_config": {
+        "small_blind": 100,
+        "big_blind": 200,
+        "buy_in": 20000,
+        "initial_bankroll": 40000,
+        "automatic_rebuy": true,
+        "max_players": 6,
+        "total_rounds": 1,
+        "hands_per_match": 20,
+        "minimum_hands": 20
+      },
+      "net_result": {
+        "calling_station": -40000,
+        "nit_folder": 140,
+        "multi_barrel": 3355,
+        "bot_sohu_v16": 37476,
+        "competent_tag": -6890,
+        "balanced_tag": 5919
+      },
+      "hands_played_by_agent": {
+        "calling_station": 18,
+        "nit_folder": 20,
+        "multi_barrel": 20,
+        "bot_sohu_v16": 20,
+        "competent_tag": 20,
+        "balanced_tag": 20
+      },
+      "rebuy_count": {
+        "calling_station": 1,
+        "nit_folder": 0,
+        "multi_barrel": 0,
+        "bot_sohu_v16": 0,
+        "competent_tag": 0,
+        "balanced_tag": 0
+      },
+      "final_stacks": {
+        "calling_station": 0,
+        "nit_folder": 20140,
+        "multi_barrel": 23355,
+        "bot_sohu_v16": 57476,
+        "competent_tag": 13110,
+        "balanced_tag": 25919
+      },
+      "bankroll_remaining": {
+        "calling_station": 0,
+        "nit_folder": 40140,
+        "multi_barrel": 43355,
+        "bot_sohu_v16": 77476,
+        "competent_tag": 33110,
+        "balanced_tag": 45919
+      },
+      "qualification_eligible": {
+        "calling_station": false,
+        "nit_folder": true,
+        "multi_barrel": true,
+        "bot_sohu_v16": true,
+        "competent_tag": true,
+        "balanced_tag": true
+      },
+      "bb_per_100_by_agent": {
+        "calling_station": -1111.111111111111,
+        "nit_folder": 3.5,
+        "multi_barrel": 83.875,
+        "bot_sohu_v16": 936.9,
+        "competent_tag": -172.25,
+        "balanced_tag": 147.975
+      }
+    },
+    {
+      "chip_delta": {
+        "nit_folder": -17800,
+        "multi_barrel": -750,
+        "bot_sohu_v16": 43072,
+        "competent_tag": -5924,
+        "balanced_tag": 21097,
+        "calling_station": -39695
+      },
+      "ev_chip_delta": {
+        "nit_folder": 7780.75,
+        "multi_barrel": -750.0,
+        "bot_sohu_v16": 12375.9625,
+        "competent_tag": -5924.0,
+        "balanced_tag": 21097.0,
+        "calling_station": -34579.7125
+      },
+      "hands": 20,
+      "timing": {
+        "nit_folder": {
+          "max": 1.1500000255182385e-05,
+          "slow": 0
+        },
+        "multi_barrel": {
+          "max": 2.1599989850074053e-05,
+          "slow": 0
+        },
+        "bot_sohu_v16": {
+          "max": 0.016444634005893022,
+          "slow": 0
+        },
+        "competent_tag": {
+          "max": 0.001277303003007546,
+          "slow": 0
+        },
+        "balanced_tag": {
+          "max": 5.9999991208314896e-05,
+          "slow": 0
+        },
+        "calling_station": {
+          "max": 2.0000006770715117e-06,
+          "slow": 0
+        }
+      },
+      "errors": {
+        "nit_folder": 0,
+        "multi_barrel": 0,
+        "bot_sohu_v16": 0,
+        "competent_tag": 0,
+        "balanced_tag": 0,
+        "calling_station": 0
+      },
+      "environment_version": "sohu-v1",
+      "competition_config": {
+        "small_blind": 100,
+        "big_blind": 200,
+        "buy_in": 20000,
+        "initial_bankroll": 40000,
+        "automatic_rebuy": true,
+        "max_players": 6,
+        "total_rounds": 1,
+        "hands_per_match": 20,
+        "minimum_hands": 20
+      },
+      "net_result": {
+        "nit_folder": -17800,
+        "multi_barrel": -750,
+        "bot_sohu_v16": 43072,
+        "competent_tag": -5924,
+        "balanced_tag": 21097,
+        "calling_station": -39695
+      },
+      "hands_played_by_agent": {
+        "nit_folder": 20,
+        "multi_barrel": 20,
+        "bot_sohu_v16": 20,
+        "competent_tag": 20,
+        "balanced_tag": 20,
+        "calling_station": 20
+      },
+      "rebuy_count": {
+        "nit_folder": 1,
+        "multi_barrel": 0,
+        "bot_sohu_v16": 0,
+        "competent_tag": 0,
+        "balanced_tag": 0,
+        "calling_station": 1
+      },
+      "final_stacks": {
+        "nit_folder": 22200,
+        "multi_barrel": 19250,
+        "bot_sohu_v16": 63072,
+        "competent_tag": 14076,
+        "balanced_tag": 41097,
+        "calling_station": 305
+      },
+      "bankroll_remaining": {
+        "nit_folder": 22200,
+        "multi_barrel": 39250,
+        "bot_sohu_v16": 83072,
+        "competent_tag": 34076,
+        "balanced_tag": 61097,
+        "calling_station": 305
+      },
+      "qualification_eligible": {
+        "nit_folder": true,
+        "multi_barrel": true,
+        "bot_sohu_v16": true,
+        "competent_tag": true,
+        "balanced_tag": true,
+        "calling_station": true
+      },
+      "bb_per_100_by_agent": {
+        "nit_folder": -445.0,
+        "multi_barrel": -18.75,
+        "bot_sohu_v16": 1076.8,
+        "competent_tag": -148.1,
+        "balanced_tag": 527.425,
+        "calling_station": -992.375
+      }
+    },
+    {
+      "chip_delta": {
+        "multi_barrel": 14154,
+        "bot_sohu_v16": -313,
+        "competent_tag": 3755,
+        "balanced_tag": -5951,
+        "calling_station": -28790,
+        "nit_folder": 17145
+      },
+      "ev_chip_delta": {
+        "multi_barrel": 14154.0,
+        "bot_sohu_v16": -313.0,
+        "competent_tag": 3755.0,
+        "balanced_tag": -5951.0,
+        "calling_station": -28790.0,
+        "nit_folder": 17145.0
+      },
+      "hands": 20,
+      "timing": {
+        "multi_barrel": {
+          "max": 6.249999569263309e-05,
+          "slow": 0
+        },
+        "bot_sohu_v16": {
+          "max": 0.016539334988920018,
+          "slow": 0
+        },
+        "competent_tag": {
+          "max": 0.001377602995489724,
+          "slow": 0
+        },
+        "balanced_tag": {
+          "max": 6.630001007579267e-05,
+          "slow": 0
+        },
+        "calling_station": {
+          "max": 1.8999999156221747e-06,
+          "slow": 0
+        },
+        "nit_folder": {
+          "max": 1.3899989426136017e-05,
+          "slow": 0
+        }
+      },
+      "errors": {
+        "multi_barrel": 0,
+        "bot_sohu_v16": 0,
+        "competent_tag": 0,
+        "balanced_tag": 0,
+        "calling_station": 0,
+        "nit_folder": 0
+      },
+      "environment_version": "sohu-v1",
+      "competition_config": {
+        "small_blind": 100,
+        "big_blind": 200,
+        "buy_in": 20000,
+        "initial_bankroll": 40000,
+        "automatic_rebuy": true,
+        "max_players": 6,
+        "total_rounds": 1,
+        "hands_per_match": 20,
+        "minimum_hands": 20
+      },
+      "net_result": {
+        "multi_barrel": 14154,
+        "bot_sohu_v16": -313,
+        "competent_tag": 3755,
+        "balanced_tag": -5951,
+        "calling_station": -28790,
+        "nit_folder": 17145
+      },
+      "hands_played_by_agent": {
+        "multi_barrel": 20,
+        "bot_sohu_v16": 20,
+        "competent_tag": 20,
+        "balanced_tag": 20,
+        "calling_station": 20,
+        "nit_folder": 20
+      },
+      "rebuy_count": {
+        "multi_barrel": 0,
+        "bot_sohu_v16": 0,
+        "competent_tag": 0,
+        "balanced_tag": 0,
+        "calling_station": 1,
+        "nit_folder": 0
+      },
+      "final_stacks": {
+        "multi_barrel": 34154,
+        "bot_sohu_v16": 19687,
+        "competent_tag": 23755,
+        "balanced_tag": 14049,
+        "calling_station": 11210,
+        "nit_folder": 37145
+      },
+      "bankroll_remaining": {
+        "multi_barrel": 54154,
+        "bot_sohu_v16": 39687,
+        "competent_tag": 43755,
+        "balanced_tag": 34049,
+        "calling_station": 11210,
+        "nit_folder": 57145
+      },
+      "qualification_eligible": {
+        "multi_barrel": true,
+        "bot_sohu_v16": true,
+        "competent_tag": true,
+        "balanced_tag": true,
+        "calling_station": true,
+        "nit_folder": true
+      },
+      "bb_per_100_by_agent": {
+        "multi_barrel": 353.85,
+        "bot_sohu_v16": -7.825,
+        "competent_tag": 93.875,
+        "balanced_tag": -148.775,
+        "calling_station": -719.75,
+        "nit_folder": 428.625
+      }
+    },
+    {
+      "chip_delta": {
+        "bot_sohu_v16": 1971,
+        "competent_tag": 612,
+        "balanced_tag": 22469,
+        "calling_station": -40000,
+        "nit_folder": 21200,
+        "multi_barrel": -6252
+      },
+      "ev_chip_delta": {
+        "bot_sohu_v16": 1971.0,
+        "competent_tag": 612.0,
+        "balanced_tag": 22469.0,
+        "calling_station": -40000.0,
+        "nit_folder": 21200.0,
+        "multi_barrel": -6252.0
+      },
+      "hands": 20,
+      "timing": {
+        "bot_sohu_v16": {
+          "max": 0.01659283399931155,
+          "slow": 0
+        },
+        "competent_tag": {
+          "max": 0.001765603999956511,
+          "slow": 0
+        },
+        "balanced_tag": {
+          "max": 4.440099291969091e-05,
+          "slow": 0
+        },
+        "calling_station": {
+          "max": 2.2000021999701858e-06,
+          "slow": 0
+        },
+        "nit_folder": {
+          "max": 6.400005077011883e-06,
+          "slow": 0
+        },
+        "multi_barrel": {
+          "max": 4.339999577496201e-05,
+          "slow": 0
+        }
+      },
+      "errors": {
+        "bot_sohu_v16": 0,
+        "competent_tag": 0,
+        "balanced_tag": 0,
+        "calling_station": 0,
+        "nit_folder": 0,
+        "multi_barrel": 0
+      },
+      "environment_version": "sohu-v1",
+      "competition_config": {
+        "small_blind": 100,
+        "big_blind": 200,
+        "buy_in": 20000,
+        "initial_bankroll": 40000,
+        "automatic_rebuy": true,
+        "max_players": 6,
+        "total_rounds": 1,
+        "hands_per_match": 20,
+        "minimum_hands": 20
+      },
+      "net_result": {
+        "bot_sohu_v16": 1971,
+        "competent_tag": 612,
+        "balanced_tag": 22469,
+        "calling_station": -40000,
+        "nit_folder": 21200,
+        "multi_barrel": -6252
+      },
+      "hands_played_by_agent": {
+        "bot_sohu_v16": 20,
+        "competent_tag": 20,
+        "balanced_tag": 20,
+        "calling_station": 19,
+        "nit_folder": 20,
+        "multi_barrel": 20
+      },
+      "rebuy_count": {
+        "bot_sohu_v16": 0,
+        "competent_tag": 0,
+        "balanced_tag": 0,
+        "calling_station": 1,
+        "nit_folder": 0,
+        "multi_barrel": 0
+      },
+      "final_stacks": {
+        "bot_sohu_v16": 21971,
+        "competent_tag": 20612,
+        "balanced_tag": 42469,
+        "calling_station": 0,
+        "nit_folder": 41200,
+        "multi_barrel": 13748
+      },
+      "bankroll_remaining": {
+        "bot_sohu_v16": 41971,
+        "competent_tag": 40612,
+        "balanced_tag": 62469,
+        "calling_station": 0,
+        "nit_folder": 61200,
+        "multi_barrel": 33748
+      },
+      "qualification_eligible": {
+        "bot_sohu_v16": true,
+        "competent_tag": true,
+        "balanced_tag": true,
+        "calling_station": false,
+        "nit_folder": true,
+        "multi_barrel": true
+      },
+      "bb_per_100_by_agent": {
+        "bot_sohu_v16": 49.275,
+        "competent_tag": 15.3,
+        "balanced_tag": 561.725,
+        "calling_station": -1052.6315789473683,
+        "nit_folder": 530.0,
+        "multi_barrel": -156.3
+      }
+    },
+    {
+      "chip_delta": {
+        "competent_tag": -10267,
+        "balanced_tag": -1475,
+        "calling_station": -7843,
+        "nit_folder": 15124,
+        "multi_barrel": -900,
+        "bot_sohu_v16": 5361
+      },
+      "ev_chip_delta": {
+        "competent_tag": -10267.0,
+        "balanced_tag": -1475.0,
+        "calling_station": -7843.0,
+        "nit_folder": 15124.0,
+        "multi_barrel": -900.0,
+        "bot_sohu_v16": 5361.0
+      },
+      "hands": 20,
+      "timing": {
+        "competent_tag": {
+          "max": 0.001366803000564687,
+          "slow": 0
+        },
+        "balanced_tag": {
+          "max": 3.390001074876636e-05,
+          "slow": 0
+        },
+        "calling_station": {
+          "max": 2.0000006770715117e-06,
+          "slow": 0
+        },
+        "nit_folder": {
+          "max": 2.3499989765696228e-05,
+          "slow": 0
+        },
+        "multi_barrel": {
+          "max": 4.0400002035312355e-05,
+          "slow": 0
+        },
+        "bot_sohu_v16": {
+          "max": 0.016311134007992223,
+          "slow": 0
+        }
+      },
+      "errors": {
+        "competent_tag": 0,
+        "balanced_tag": 0,
+        "calling_station": 0,
+        "nit_folder": 0,
+        "multi_barrel": 0,
+        "bot_sohu_v16": 0
+      },
+      "environment_version": "sohu-v1",
+      "competition_config": {
+        "small_blind": 100,
+        "big_blind": 200,
+        "buy_in": 20000,
+        "initial_bankroll": 40000,
+        "automatic_rebuy": true,
+        "max_players": 6,
+        "total_rounds": 1,
+        "hands_per_match": 20,
+        "minimum_hands": 20
+      },
+      "net_result": {
+        "competent_tag": -10267,
+        "balanced_tag": -1475,
+        "calling_station": -7843,
+        "nit_folder": 15124,
+        "multi_barrel": -900,
+        "bot_sohu_v16": 5361
+      },
+      "hands_played_by_agent": {
+        "competent_tag": 20,
+        "balanced_tag": 20,
+        "calling_station": 20,
+        "nit_folder": 20,
+        "multi_barrel": 20,
+        "bot_sohu_v16": 20
+      },
+      "rebuy_count": {
+        "competent_tag": 0,
+        "balanced_tag": 0,
+        "calling_station": 0,
+        "nit_folder": 0,
+        "multi_barrel": 0,
+        "bot_sohu_v16": 0
+      },
+      "final_stacks": {
+        "competent_tag": 9733,
+        "balanced_tag": 18525,
+        "calling_station": 12157,
+        "nit_folder": 35124,
+        "multi_barrel": 19100,
+        "bot_sohu_v16": 25361
+      },
+      "bankroll_remaining": {
+        "competent_tag": 29733,
+        "balanced_tag": 38525,
+        "calling_station": 32157,
+        "nit_folder": 55124,
+        "multi_barrel": 39100,
+        "bot_sohu_v16": 45361
+      },
+      "qualification_eligible": {
+        "competent_tag": true,
+        "balanced_tag": true,
+        "calling_station": true,
+        "nit_folder": true,
+        "multi_barrel": true,
+        "bot_sohu_v16": true
+      },
+      "bb_per_100_by_agent": {
+        "competent_tag": -256.675,
+        "balanced_tag": -36.875,
+        "calling_station": -196.075,
+        "nit_folder": 378.1,
+        "multi_barrel": -22.5,
+        "bot_sohu_v16": 134.025
+      }
+    },
+    {
+      "chip_delta": {
+        "balanced_tag": 2990,
+        "calling_station": -40000,
+        "nit_folder": -472,
+        "multi_barrel": 27072,
+        "bot_sohu_v16": 11470,
+        "competent_tag": -1060
+      },
+      "ev_chip_delta": {
+        "balanced_tag": 2990.0,
+        "calling_station": -40000.0,
+        "nit_folder": -472.0,
+        "multi_barrel": 27072.0,
+        "bot_sohu_v16": 11470.0,
+        "competent_tag": -1060.0
+      },
+      "hands": 20,
+      "timing": {
+        "balanced_tag": {
+          "max": 5.170100484974682e-05,
+          "slow": 0
+        },
+        "calling_station": {
+          "max": 2.0000006770715117e-06,
+          "slow": 0
+        },
+        "nit_folder": {
+          "max": 3.0800001695752144e-05,
+          "slow": 0
+        },
+        "multi_barrel": {
+          "max": 4.269999044481665e-05,
+          "slow": 0
+        },
+        "bot_sohu_v16": {
+          "max": 0.017318736005108804,
+          "slow": 0
+        },
+        "competent_tag": {
+          "max": 0.0013257030077511445,
+          "slow": 0
+        }
+      },
+      "errors": {
+        "balanced_tag": 0,
+        "calling_station": 0,
+        "nit_folder": 0,
+        "multi_barrel": 0,
+        "bot_sohu_v16": 0,
+        "competent_tag": 0
+      },
+      "environment_version": "sohu-v1",
+      "competition_config": {
+        "small_blind": 100,
+        "big_blind": 200,
+        "buy_in": 20000,
+        "initial_bankroll": 40000,
+        "automatic_rebuy": true,
+        "max_players": 6,
+        "total_rounds": 1,
+        "hands_per_match": 20,
+        "minimum_hands": 20
+      },
+      "net_result": {
+        "balanced_tag": 2990,
+        "calling_station": -40000,
+        "nit_folder": -472,
+        "multi_barrel": 27072,
+        "bot_sohu_v16": 11470,
+        "competent_tag": -1060
+      },
+      "hands_played_by_agent": {
+        "balanced_tag": 20,
+        "calling_station": 14,
+        "nit_folder": 20,
+        "multi_barrel": 20,
+        "bot_sohu_v16": 20,
+        "competent_tag": 20
+      },
+      "rebuy_count": {
+        "balanced_tag": 0,
+        "calling_station": 1,
+        "nit_folder": 0,
+        "multi_barrel": 0,
+        "bot_sohu_v16": 0,
+        "competent_tag": 0
+      },
+      "final_stacks": {
+        "balanced_tag": 22990,
+        "calling_station": 0,
+        "nit_folder": 19528,
+        "multi_barrel": 47072,
+        "bot_sohu_v16": 31470,
+        "competent_tag": 18940
+      },
+      "bankroll_remaining": {
+        "balanced_tag": 42990,
+        "calling_station": 0,
+        "nit_folder": 39528,
+        "multi_barrel": 67072,
+        "bot_sohu_v16": 51470,
+        "competent_tag": 38940
+      },
+      "qualification_eligible": {
+        "balanced_tag": true,
+        "calling_station": false,
+        "nit_folder": true,
+        "multi_barrel": true,
+        "bot_sohu_v16": true,
+        "competent_tag": true
+      },
+      "bb_per_100_by_agent": {
+        "balanced_tag": 74.75,
+        "calling_station": -1428.5714285714287,
+        "nit_folder": -11.8,
+        "multi_barrel": 676.8,
+        "bot_sohu_v16": 286.75,
+        "competent_tag": -26.5
+      }
+    },
+    {
+      "chip_delta": {
+        "calling_station": 12673,
+        "nit_folder": -2040,
+        "multi_barrel": -903,
+        "bot_sohu_v16": -18870,
+        "competent_tag": 12730,
+        "balanced_tag": -3590
+      },
+      "ev_chip_delta": {
+        "calling_station": 12673.0,
+        "nit_folder": -2040.0,
+        "multi_barrel": -903.0,
+        "bot_sohu_v16": -18870.0,
+        "competent_tag": 12730.0,
+        "balanced_tag": -3590.0
+      },
+      "hands": 20,
+      "timing": {
+        "calling_station": {
+          "max": 2.2000021999701858e-06,
+          "slow": 0
+        },
+        "nit_folder": {
+          "max": 1.7800004570744932e-05,
+          "slow": 0
+        },
+        "multi_barrel": {
+          "max": 3.809999907389283e-05,
+          "slow": 0
+        },
+        "bot_sohu_v16": {
+          "max": 0.019048140005907044,
+          "slow": 0
+        },
+        "competent_tag": {
+          "max": 0.0013096020120428875,
+          "slow": 0
+        },
+        "balanced_tag": {
+          "max": 3.890000516548753e-05,
+          "slow": 0
+        }
+      },
+      "errors": {
+        "calling_station": 0,
+        "nit_folder": 0,
+        "multi_barrel": 0,
+        "bot_sohu_v16": 0,
+        "competent_tag": 0,
+        "balanced_tag": 0
+      },
+      "environment_version": "sohu-v1",
+      "competition_config": {
+        "small_blind": 100,
+        "big_blind": 200,
+        "buy_in": 20000,
+        "initial_bankroll": 40000,
+        "automatic_rebuy": true,
+        "max_players": 6,
+        "total_rounds": 1,
+        "hands_per_match": 20,
+        "minimum_hands": 20
+      },
+      "net_result": {
+        "calling_station": 12673,
+        "nit_folder": -2040,
+        "multi_barrel": -903,
+        "bot_sohu_v16": -18870,
+        "competent_tag": 12730,
+        "balanced_tag": -3590
+      },
+      "hands_played_by_agent": {
+        "calling_station": 20,
+        "nit_folder": 20,
+        "multi_barrel": 20,
+        "bot_sohu_v16": 20,
+        "competent_tag": 20,
+        "balanced_tag": 20
+      },
+      "rebuy_count": {
+        "calling_station": 0,
+        "nit_folder": 0,
+        "multi_barrel": 0,
+        "bot_sohu_v16": 0,
+        "competent_tag": 0,
+        "balanced_tag": 1
+      },
+      "final_stacks": {
+        "calling_station": 32673,
+        "nit_folder": 17960,
+        "multi_barrel": 19097,
+        "bot_sohu_v16": 1130,
+        "competent_tag": 32730,
+        "balanced_tag": 36410
+      },
+      "bankroll_remaining": {
+        "calling_station": 52673,
+        "nit_folder": 37960,
+        "multi_barrel": 39097,
+        "bot_sohu_v16": 21130,
+        "competent_tag": 52730,
+        "balanced_tag": 36410
+      },
+      "qualification_eligible": {
+        "calling_station": true,
+        "nit_folder": true,
+        "multi_barrel": true,
+        "bot_sohu_v16": true,
+        "competent_tag": true,
+        "balanced_tag": true
+      },
+      "bb_per_100_by_agent": {
+        "calling_station": 316.825,
+        "nit_folder": -51.0,
+        "multi_barrel": -22.575,
+        "bot_sohu_v16": -471.75,
+        "competent_tag": 318.25,
+        "balanced_tag": -89.75
+      }
+    },
+    {
+      "chip_delta": {
+        "nit_folder": 13924,
+        "multi_barrel": 300,
+        "bot_sohu_v16": 9398,
+        "competent_tag": 17378,
+        "balanced_tag": -1000,
+        "calling_station": -40000
+      },
+      "ev_chip_delta": {
+        "nit_folder": 13924.0,
+        "multi_barrel": 300.0,
+        "bot_sohu_v16": 9398.0,
+        "competent_tag": 17378.0,
+        "balanced_tag": -1000.0,
+        "calling_station": -40000.0
+      },
+      "hands": 20,
+      "timing": {
+        "nit_folder": {
+          "max": 6.400005077011883e-06,
+          "slow": 0
+        },
+        "multi_barrel": {
+          "max": 2.7400004910305142e-05,
+          "slow": 0
+        },
+        "bot_sohu_v16": {
+          "max": 0.012909126991871744,
+          "slow": 0
+        },
+        "competent_tag": {
+          "max": 0.0009358020033687353,
+          "slow": 0
+        },
+        "balanced_tag": {
+          "max": 2.0500010577961802e-05,
+          "slow": 0
+        },
+        "calling_station": {
+          "max": 1.400010660290718e-06,
+          "slow": 0
+        }
+      },
+      "errors": {
+        "nit_folder": 0,
+        "multi_barrel": 0,
+        "bot_sohu_v16": 0,
+        "competent_tag": 0,
+        "balanced_tag": 0,
+        "calling_station": 0
+      },
+      "environment_version": "sohu-v1",
+      "competition_config": {
+        "small_blind": 100,
+        "big_blind": 200,
+        "buy_in": 20000,
+        "initial_bankroll": 40000,
+        "automatic_rebuy": true,
+        "max_players": 6,
+        "total_rounds": 1,
+        "hands_per_match": 20,
+        "minimum_hands": 20
+      },
+      "net_result": {
+        "nit_folder": 13924,
+        "multi_barrel": 300,
+        "bot_sohu_v16": 9398,
+        "competent_tag": 17378,
+        "balanced_tag": -1000,
+        "calling_station": -40000
+      },
+      "hands_played_by_agent": {
+        "nit_folder": 20,
+        "multi_barrel": 20,
+        "bot_sohu_v16": 20,
+        "competent_tag": 20,
+        "balanced_tag": 20,
+        "calling_station": 8
+      },
+      "rebuy_count": {
+        "nit_folder": 0,
+        "multi_barrel": 0,
+        "bot_sohu_v16": 0,
+        "competent_tag": 0,
+        "balanced_tag": 0,
+        "calling_station": 1
+      },
+      "final_stacks": {
+        "nit_folder": 33924,
+        "multi_barrel": 20300,
+        "bot_sohu_v16": 29398,
+        "competent_tag": 37378,
+        "balanced_tag": 19000,
+        "calling_station": 0
+      },
+      "bankroll_remaining": {
+        "nit_folder": 53924,
+        "multi_barrel": 40300,
+        "bot_sohu_v16": 49398,
+        "competent_tag": 57378,
+        "balanced_tag": 39000,
+        "calling_station": 0
+      },
+      "qualification_eligible": {
+        "nit_folder": true,
+        "multi_barrel": true,
+        "bot_sohu_v16": true,
+        "competent_tag": true,
+        "balanced_tag": true,
+        "calling_station": false
+      },
+      "bb_per_100_by_agent": {
+        "nit_folder": 348.1,
+        "multi_barrel": 7.5,
+        "bot_sohu_v16": 234.95,
+        "competent_tag": 434.45,
+        "balanced_tag": -25.0,
+        "calling_station": -2500.0
+      }
+    },
+    {
+      "chip_delta": {
+        "multi_barrel": -100,
+        "bot_sohu_v16": 6263,
+        "competent_tag": -900,
+        "balanced_tag": 19600,
+        "calling_station": -40000,
+        "nit_folder": 15137
+      },
+      "ev_chip_delta": {
+        "multi_barrel": -100.0,
+        "bot_sohu_v16": 6263.0,
+        "competent_tag": -900.0,
+        "balanced_tag": 19600.0,
+        "calling_station": -40000.0,
+        "nit_folder": 15137.0
+      },
+      "hands": 20,
+      "timing": {
+        "multi_barrel": {
+          "max": 3.070000093430281e-05,
+          "slow": 0
+        },
+        "bot_sohu_v16": {
+          "max": 0.015993833003449254,
+          "slow": 0
+        },
+        "competent_tag": {
+          "max": 0.0012245020043337718,
+          "slow": 0
+        },
+        "balanced_tag": {
+          "max": 3.0199997127056122e-05,
+          "slow": 0
+        },
+        "calling_station": {
+          "max": 1.4999968698248267e-06,
+          "slow": 0
+        },
+        "nit_folder": {
+          "max": 1.1299998732283711e-05,
+          "slow": 0
+        }
+      },
+      "errors": {
+        "multi_barrel": 0,
+        "bot_sohu_v16": 0,
+        "competent_tag": 0,
+        "balanced_tag": 0,
+        "calling_station": 0,
+        "nit_folder": 0
+      },
+      "environment_version": "sohu-v1",
+      "competition_config": {
+        "small_blind": 100,
+        "big_blind": 200,
+        "buy_in": 20000,
+        "initial_bankroll": 40000,
+        "automatic_rebuy": true,
+        "max_players": 6,
+        "total_rounds": 1,
+        "hands_per_match": 20,
+        "minimum_hands": 20
+      },
+      "net_result": {
+        "multi_barrel": -100,
+        "bot_sohu_v16": 6263,
+        "competent_tag": -900,
+        "balanced_tag": 19600,
+        "calling_station": -40000,
+        "nit_folder": 15137
+      },
+      "hands_played_by_agent": {
+        "multi_barrel": 20,
+        "bot_sohu_v16": 20,
+        "competent_tag": 20,
+        "balanced_tag": 20,
+        "calling_station": 9,
+        "nit_folder": 20
+      },
+      "rebuy_count": {
+        "multi_barrel": 0,
+        "bot_sohu_v16": 0,
+        "competent_tag": 0,
+        "balanced_tag": 0,
+        "calling_station": 1,
+        "nit_folder": 0
+      },
+      "final_stacks": {
+        "multi_barrel": 19900,
+        "bot_sohu_v16": 26263,
+        "competent_tag": 19100,
+        "balanced_tag": 39600,
+        "calling_station": 0,
+        "nit_folder": 35137
+      },
+      "bankroll_remaining": {
+        "multi_barrel": 39900,
+        "bot_sohu_v16": 46263,
+        "competent_tag": 39100,
+        "balanced_tag": 59600,
+        "calling_station": 0,
+        "nit_folder": 55137
+      },
+      "qualification_eligible": {
+        "multi_barrel": true,
+        "bot_sohu_v16": true,
+        "competent_tag": true,
+        "balanced_tag": true,
+        "calling_station": false,
+        "nit_folder": true
+      },
+      "bb_per_100_by_agent": {
+        "multi_barrel": -2.5,
+        "bot_sohu_v16": 156.575,
+        "competent_tag": -22.5,
+        "balanced_tag": 490.0,
+        "calling_station": -2222.222222222222,
+        "nit_folder": 378.425
+      }
+    }
+  ],
+  "elapsed_s": 5.84,
+  "hero_id": "bot_sohu_v16",
+  "stats": {
+    "bot_sohu_v16": {
+      "matches": 24,
+      "hands_played": 480,
+      "total_delta": 146456,
+      "mean_delta": 6102.333333333333,
+      "stdev": 13090.337587126145,
+      "stderr": 2672.0539707695493,
+      "ci95": 5237.225782708317,
+      "ci_low": 865.1075506250163,
+      "ci_high": 11339.55911604165,
+      "bb_per_100": 152.55833333333334,
+      "win_rate": 0.75
+    },
+    "competent_tag": {
+      "matches": 24,
+      "hands_played": 480,
+      "total_delta": 72179,
+      "mean_delta": 3007.4583333333335,
+      "stdev": 12059.215689325183,
+      "stderr": 2461.577094751001,
+      "ci95": 4824.691105711961,
+      "ci_low": -1817.232772378628,
+      "ci_high": 7832.149439045295,
+      "bb_per_100": 75.18645833333333,
+      "win_rate": 0.5416666666666666
+    },
+    "balanced_tag": {
+      "matches": 24,
+      "hands_played": 480,
+      "total_delta": 154600,
+      "mean_delta": 6441.666666666667,
+      "stdev": 18164.9979778758,
+      "stderr": 3707.914685373662,
+      "ci95": 7267.512783332378,
+      "ci_low": -825.8461166657107,
+      "ci_high": 13709.179449999045,
+      "bb_per_100": 161.04166666666666,
+      "win_rate": 0.5416666666666666
+    },
+    "calling_station": {
+      "matches": 24,
+      "hands_played": 399,
+      "total_delta": -695279,
+      "mean_delta": -28969.958333333332,
+      "stdev": 18002.29178521245,
+      "stderr": 3674.7024228723135,
+      "ci95": 7202.416748829734,
+      "ci_low": -36172.37508216307,
+      "ci_high": -21767.541584503597,
+      "bb_per_100": -871.2769423558898,
+      "win_rate": 0.08333333333333333
+    },
+    "nit_folder": {
+      "matches": 24,
+      "hands_played": 480,
+      "total_delta": 90126,
+      "mean_delta": 3755.25,
+      "stdev": 13797.18093843181,
+      "stderr": 2816.337765667692,
+      "ci95": 5520.022020708677,
+      "ci_low": -1764.7720207086768,
+      "ci_high": 9275.272020708677,
+      "bb_per_100": 93.88125,
+      "win_rate": 0.4583333333333333
+    },
+    "multi_barrel": {
+      "matches": 24,
+      "hands_played": 480,
+      "total_delta": 231918,
+      "mean_delta": 9663.25,
+      "stdev": 13060.262698769484,
+      "stderr": 2665.9149598908,
+      "ci95": 5225.193321385968,
+      "ci_low": 4438.056678614032,
+      "ci_high": 14888.443321385968,
+      "bb_per_100": 241.58124999999998,
+      "win_rate": 0.7083333333333334
+    }
+  },
+  "per_match_deltas": {
+    "bot_sohu_v16": [
+      1816,
+      6929,
+      1665,
+      2490,
+      16923,
+      14119,
+      1499,
+      7521,
+      3647,
+      -1320,
+      3055,
+      -1100,
+      9034,
+      -14640,
+      -1010,
+      37476,
+      43072,
+      -313,
+      1971,
+      5361,
+      11470,
+      -18870,
+      9398,
+      6263
+    ],
+    "competent_tag": [
+      30524,
+      -900,
+      10875,
+      -8604,
+      14662,
+      -1200,
+      8055,
+      9373,
+      -31509,
+      13136,
+      13261,
+      -2320,
+      7267,
+      -25,
+      150,
+      -6890,
+      -5924,
+      3755,
+      612,
+      -10267,
+      -1060,
+      12730,
+      17378,
+      -900
+    ],
+    "balanced_tag": [
+      -70,
+      41,
+      -20300,
+      4478,
+      10040,
+      -2520,
+      -750,
+      -8900,
+      68722,
+      -11596,
+      4939,
+      38636,
+      12433,
+      1620,
+      -2232,
+      5919,
+      21097,
+      -5951,
+      22469,
+      -1475,
+      2990,
+      -3590,
+      -1000,
+      19600
+    ],
+    "calling_station": [
+      -40000,
+      -40000,
+      -40000,
+      -40000,
+      -40000,
+      -17680,
+      -15581,
+      -40000,
+      -40000,
+      -29075,
+      -28176,
+      -40000,
+      -40000,
+      19355,
+      -467,
+      -40000,
+      -39695,
+      -28790,
+      -40000,
+      -7843,
+      -40000,
+      12673,
+      -40000,
+      -40000
+    ],
+    "nit_folder": [
+      -1840,
+      7261,
+      36515,
+      -2729,
+      -1800,
+      7681,
+      -1268,
+      -700,
+      -160,
+      26019,
+      -20400,
+      1529,
+      -900,
+      -21040,
+      -400,
+      140,
+      -17800,
+      17145,
+      21200,
+      15124,
+      -472,
+      -2040,
+      13924,
+      15137
+    ],
+    "multi_barrel": [
+      9570,
+      26669,
+      11245,
+      44365,
+      175,
+      -400,
+      8045,
+      32706,
+      -700,
+      2836,
+      27321,
+      3255,
+      12166,
+      14730,
+      3959,
+      3355,
+      -750,
+      14154,
+      -6252,
+      -900,
+      27072,
+      -903,
+      300,
+      -100
+    ]
+  },
+  "per_match_ev_deltas": {
+    "bot_sohu_v16": [
+      1816.0,
+      6929.0,
+      1665.0,
+      2490.0,
+      16923.0,
+      14119.0,
+      1499.0,
+      7521.0,
+      1964.7605,
+      -1320.0,
+      3055.0,
+      -1100.0,
+      9034.0,
+      -14640.0,
+      -1010.0,
+      37476.0,
+      12375.9625,
+      -313.0,
+      1971.0,
+      5361.0,
+      11470.0,
+      -18870.0,
+      9398.0,
+      6263.0
+    ],
+    "competent_tag": [
+      30524.0,
+      -900.0,
+      10875.0,
+      -8604.0,
+      14662.0,
+      -1200.0,
+      8055.0,
+      9373.0,
+      -31509.0,
+      13136.0,
+      13261.0,
+      -2320.0,
+      7267.0,
+      -25.0,
+      150.0,
+      -6890.0,
+      -5924.0,
+      3755.0,
+      612.0,
+      -10267.0,
+      -1060.0,
+      12730.0,
+      17378.0,
+      -900.0
+    ],
+    "balanced_tag": [
+      -70.0,
+      41.0,
+      -6053.268,
+      4478.0,
+      10040.0,
+      -2520.0,
+      -750.0,
+      -8900.0,
+      68722.0,
+      -11596.0,
+      4939.0,
+      38636.0,
+      12433.0,
+      1620.0,
+      -2232.0,
+      5919.0,
+      21097.0,
+      -5951.0,
+      22469.0,
+      -1475.0,
+      2990.0,
+      -3590.0,
+      -1000.0,
+      19600.0
+    ],
+    "calling_station": [
+      -40000.0,
+      -40000.0,
+      -35969.0909,
+      -40000.0,
+      -40000.0,
+      -17680.0,
+      -15581.0,
+      -40000.0,
+      -38317.7605,
+      -29075.0,
+      -23671.6225,
+      -40000.0,
+      -40000.0,
+      19355.0,
+      -467.0,
+      -40000.0,
+      -34579.7125,
+      -28790.0,
+      -40000.0,
+      -7843.0,
+      -40000.0,
+      12673.0,
+      -40000.0,
+      -40000.0
+    ],
+    "nit_folder": [
+      -1840.0,
+      7261.0,
+      22268.268,
+      -2729.0,
+      -1800.0,
+      7681.0,
+      -1268.0,
+      -700.0,
+      -160.0,
+      26019.0,
+      -1959.1775,
+      1529.0,
+      -900.0,
+      -21040.0,
+      -400.0,
+      140.0,
+      7780.75,
+      17145.0,
+      21200.0,
+      15124.0,
+      -472.0,
+      -2040.0,
+      13924.0,
+      15137.0
+    ],
+    "multi_barrel": [
+      9570.0,
+      26669.0,
+      7214.0909,
+      44365.0,
+      175.0,
+      -400.0,
+      8045.0,
+      32706.0,
+      -700.0,
+      2836.0,
+      4375.8,
+      3255.0,
+      12166.0,
+      14730.0,
+      3959.0,
+      3355.0,
+      -750.0,
+      14154.0,
+      -6252.0,
+      -900.0,
+      27072.0,
+      -903.0,
+      300.0,
+      -100.0
+    ]
+  },
+  "per_match_placement": {
+    "bot_sohu_v16": [
+      3.0,
+      3.0,
+      4.0,
+      3.0,
+      1.0,
+      1.0,
+      3.0,
+      3.0,
+      2.0,
+      4.0,
+      4.0,
+      4.0,
+      3.0,
+      5.0,
+      5.0,
+      1.0,
+      1.0,
+      4.0,
+      3.0,
+      2.0,
+      2.0,
+      6.0,
+      3.0,
+      3.0
+    ],
+    "competent_tag": [
+      1.0,
+      5.0,
+      3.0,
+      5.0,
+      2.0,
+      4.0,
+      1.0,
+      2.0,
+      5.0,
+      2.0,
+      2.0,
+      5.0,
+      4.0,
+      4.0,
+      2.0,
+      5.0,
+      4.0,
+      3.0,
+      4.0,
+      6.0,
+      5.0,
+      1.0,
+      1.0,
+      5.0
+    ],
+    "balanced_tag": [
+      4.0,
+      4.0,
+      5.0,
+      2.0,
+      3.0,
+      5.0,
+      4.0,
+      5.0,
+      1.0,
+      5.0,
+      3.0,
+      1.0,
+      1.0,
+      3.0,
+      6.0,
+      2.0,
+      2.0,
+      5.0,
+      1.0,
+      4.0,
+      3.0,
+      5.0,
+      5.0,
+      1.0
+    ],
+    "calling_station": [
+      6.0,
+      6.0,
+      6.0,
+      6.0,
+      6.0,
+      6.0,
+      6.0,
+      6.0,
+      6.0,
+      6.0,
+      6.0,
+      6.0,
+      6.0,
+      1.0,
+      4.0,
+      6.0,
+      6.0,
+      6.0,
+      6.0,
+      5.0,
+      6.0,
+      2.0,
+      6.0,
+      6.0
+    ],
+    "nit_folder": [
+      5.0,
+      2.0,
+      1.0,
+      4.0,
+      5.0,
+      2.0,
+      5.0,
+      4.0,
+      3.0,
+      1.0,
+      5.0,
+      3.0,
+      5.0,
+      6.0,
+      3.0,
+      4.0,
+      5.0,
+      1.0,
+      2.0,
+      1.0,
+      4.0,
+      4.0,
+      2.0,
+      2.0
+    ],
+    "multi_barrel": [
+      2.0,
+      1.0,
+      2.0,
+      1.0,
+      4.0,
+      3.0,
+      2.0,
+      1.0,
+      4.0,
+      3.0,
+      1.0,
+      2.0,
+      2.0,
+      2.0,
+      1.0,
+      3.0,
+      3.0,
+      2.0,
+      5.0,
+      3.0,
+      1.0,
+      3.0,
+      4.0,
+      4.0
+    ]
+  },
+  "errors": {
+    "bot_sohu_v16": 0,
+    "competent_tag": 0,
+    "balanced_tag": 0,
+    "calling_station": 0,
+    "nit_folder": 0,
+    "multi_barrel": 0
+  },
+  "timing": {
+    "bot_sohu_v16": {
+      "max": 0.019048140005907044,
+      "slow": 0
+    },
+    "competent_tag": {
+      "max": 0.0021032040094723925,
+      "slow": 0
+    },
+    "balanced_tag": {
+      "max": 0.0001392010017298162,
+      "slow": 0
+    },
+    "calling_station": {
+      "max": 2.9699993319809437e-05,
+      "slow": 0
+    },
+    "nit_folder": {
+      "max": 3.4199998481199145e-05,
+      "slow": 0
+    },
+    "multi_barrel": {
+      "max": 0.00029260000155773014,
+      "slow": 0
+    }
+  },
+  "seed_base": 100,
+  "hands_per_match": 20,
+  "top3_probability": 0.6666666666666666,
+  "champion_probability": 0.16666666666666666,
+  "scope": "Offline opponent panel; probabilities describe this panel only",
+  "config_source": "configs/sohu.backtest.example.json",
+  "config_note": "Verify these parameters against the selected Competition; protocol examples are not official match settings",
+  "dependencies": {
+    "eval7": "0.1.10",
+    "future": "1.0.0",
+    "pyparsing": "3.3.3"
+  },
+  "strategy_sha256": {
+    "hero_bots/bot_sohu_v16/bot.py": "5a706518e5aa277244ef68275da65524af4c31578c7d9df78e14ba2d0c766d8d",
+    "bots/custom/competent_tag/bot.py": "96c6cc14e52b10922b2e2af17935fcd4661105efa77873ef53d37b9d09de4dc7",
+    "bots/custom/balanced_tag/bot.py": "9b64f506116866b216105da0d05ea0e6db7765e7ea75f93f398e763cda56de2c",
+    "bots/custom/calling_station/bot.py": "4beccfd01bd74af6be79ffabefcd827070eb113b38be6c14b145181f98373e14",
+    "bots/custom/nit_folder/bot.py": "eb3084d881419b664c901427978d8572815450eaa2319111a0174e84a8ca2f60",
+    "bots/custom/multi_barrel/bot.py": "1a78962d447e9ec62b34264b4be4556997030e769a1b14671c9f246b7b7b0718"
+  },
+  "baseline_sha256": "ffa1ac5083482a96b240ce2a3dcff8f329333184f9006231d0c42bbbc877810a",
+  "schema_version": 3,
+  "mode": "eval",
+  "hero": {
+    "id": "bot_sohu_v16",
+    "path": "hero_bots/bot_sohu_v16/bot.py"
+  },
+  "opponents": [
+    {
+      "id": "competent_tag",
+      "path": "bots/custom/competent_tag/bot.py"
+    },
+    {
+      "id": "balanced_tag",
+      "path": "bots/custom/balanced_tag/bot.py"
+    },
+    {
+      "id": "calling_station",
+      "path": "bots/custom/calling_station/bot.py"
+    },
+    {
+      "id": "nit_folder",
+      "path": "bots/custom/nit_folder/bot.py"
+    },
+    {
+      "id": "multi_barrel",
+      "path": "bots/custom/multi_barrel/bot.py"
+    }
+  ],
+  "params": {
+    "matches": 24,
+    "hands": 20,
+    "seed_base": 100,
+    "competition_config": {
+      "small_blind": 100,
+      "big_blind": 200,
+      "buy_in": 20000,
+      "initial_bankroll": 40000,
+      "automatic_rebuy": true,
+      "max_players": 6,
+      "total_rounds": 1,
+      "hands_per_match": 20,
+      "minimum_hands": 20
+    },
+    "big_blind": 200,
+    "environment_version": "sohu-v1"
+  },
+  "metadata": {
+    "label": "Sohu baseline 20 hands",
+    "completed_at": "2026-10-09T09:14:03.629171+00:00"
+  },
+  "errors_per_bot": {
+    "bot_sohu_v16": 0,
+    "competent_tag": 0,
+    "balanced_tag": 0,
+    "calling_station": 0,
+    "nit_folder": 0,
+    "multi_barrel": 0
+  },
+  "timing_per_bot": {
+    "bot_sohu_v16": {
+      "max": 0.019048140005907044,
+      "slow": 0
+    },
+    "competent_tag": {
+      "max": 0.0021032040094723925,
+      "slow": 0
+    },
+    "balanced_tag": {
+      "max": 0.0001392010017298162,
+      "slow": 0
+    },
+    "calling_station": {
+      "max": 2.9699993319809437e-05,
+      "slow": 0
+    },
+    "nit_folder": {
+      "max": 3.4199998481199145e-05,
+      "slow": 0
+    },
+    "multi_barrel": {
+      "max": 0.00029260000155773014,
+      "slow": 0
+    }
+  }
+}

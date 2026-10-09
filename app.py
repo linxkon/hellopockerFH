@@ -574,6 +574,7 @@ def run_job(job, results_dir, progress_callback=None, repo_path=None):
                 progress_callback=progress_callback,
                 workers=n_workers,
                 worker_repo_path=worker_repo_path,
+                competition_config=params.get("competition_config"),
             )
         elif job["mode"] == "ab":
             result = analysis._run_multi(
@@ -588,6 +589,7 @@ def run_job(job, results_dir, progress_callback=None, repo_path=None):
                 progress_callback=progress_callback,
                 workers=n_workers,
                 worker_repo_path=worker_repo_path,
+                competition_config=params.get("competition_config"),
             )
         else:
             raise ValueError(f"Unknown job mode: {job['mode']!r}")
@@ -1157,7 +1159,25 @@ with tab_run:
         st.markdown("**Parameters**")
         pc1, pc2, pc3 = st.columns(3)
         matches = pc1.number_input("Matches", min_value=1, value=100, step=10, key="cfg_matches")
-        hands = pc2.number_input("Hands per match", min_value=1, value=400, step=20, key="cfg_hands")
+        scenario = st.selectbox("Evaluation environment", ["Fullhouse legacy", "Sohu 20 hands", "Sohu 30 hands"], key="cfg_environment")
+        sohu_config = None
+        if scenario != "Fullhouse legacy":
+            config_text = st.text_area("Competition configuration JSON", value='{"small_blind":100,"big_blind":200,"buy_in":20000,"initial_bankroll":40000,"automatic_rebuy":true,"max_players":6,"total_rounds":1,"hands_per_match":20,"minimum_hands":20}',
+                                      help="These are protocol example values. Replace them with the selected Competition summary.")
+            try:
+                from engine.competition import CompetitionConfig
+                raw_config = json.loads(config_text)
+                cfg = CompetitionConfig.from_summary(raw_config) if "blinds" in raw_config else CompetitionConfig(**raw_config)
+                sohu_config = cfg.to_dict()
+                sohu_config["hands_per_match"] = 20 if scenario == "Sohu 20 hands" else 30
+                sohu_config["total_rounds"] = 1
+            except (ValueError, TypeError, KeyError) as exc:
+                st.error(f"Invalid Competition configuration: {exc}")
+            hands = 20 if scenario == "Sohu 20 hands" else 30
+            pc2.metric("Hands per match", hands)
+            seat_ok = seat_ok and bool(sohu_config) and n_seats <= (sohu_config or {}).get("max_players", 0)
+        else:
+            hands = pc2.number_input("Hands per match", min_value=1, value=400, step=20, key="cfg_hands")
         seed_base = pc3.number_input("Seed base", value=0, step=1, key="cfg_seed")
 
         pc4, pc5, pc6 = st.columns(3)
@@ -1234,13 +1254,18 @@ with tab_run:
             "fold_on_timeout": bool(fold_on_timeout),
             "workers": int(workers),
         }
+        if sohu_config:
+            params["competition_config"] = sohu_config
+            params["environment_version"] = "sohu-v1"
         if mode == "eval":
             params["reload"] = bool(reload_each)
             params["rotate_seats"] = bool(rotate)
 
         # ----- Add single job -----
         if st.button("Add to queue", type="primary", key="add_to_queue"):
-            if not effective_field:
+            if scenario != "Fullhouse legacy" and not seat_ok:
+                st.error("Supply valid Competition parameters and a field within max_players.")
+            elif not effective_field:
                 st.error(f"Pick at least one {'opponent' if mode == 'eval' else 'field bot'}.")
             elif n_seats > MAX_SEATS:
                 st.error(f"{n_seats} seats exceeds the engine cap of {MAX_SEATS}. "
@@ -1345,6 +1370,7 @@ with tab_run:
                     or not seed_list
                     or seeds_err is not None
                     or (mode == "ab" and len(hero_choices) < 2)
+                    or (scenario != "Fullhouse legacy" and not sohu_config)
                 )
                 if st.button(
                     f"Queue sweep ({n_jobs_preview} job(s): "
@@ -1368,7 +1394,7 @@ with tab_run:
                         if not field_ids:
                             skipped_empty.append(pname)
                             continue
-                        if len(field_ids) + 1 > MAX_SEATS:
+                        if len(field_ids) + 1 > (sohu_config["max_players"] if sohu_config else MAX_SEATS):
                             skipped_big.append(pname)
                             continue
                         opps = [opp_by_id[b] for b in field_ids]  # dups kept
@@ -1788,6 +1814,7 @@ def _render_comparison_matrix(all_results):
             for hid in heroes:
                 vals = analysis.series_arrays(grp["probes"][probe]["winner"],
                                               "placement").get(hid) or []
+                vals = [v for v in vals if v is not None]
                 if vals:
                     max_seats = max(max_seats, int(max(vals)))
         ks = tuple(k for k in (1, 2, 3) if k <= max(max_seats, 1))
@@ -2055,6 +2082,7 @@ with tab_results:
                     "batch": p.get("batch_label") or "",
                     "mode": mode,
                     "legacy": d.get("_legacy") or "",
+                    "environment": d.get("environment_version") or "fullhouse-legacy",
                     "completed_at": (d.get("metadata") or {}).get("completed_at"),
                     "label": (d.get("metadata") or {}).get("label"),
                     "hero(es)": hero_repr,
@@ -2155,7 +2183,7 @@ with tab_results:
                             "mean Δ/match": round(s.get("mean_delta") or 0.0, 1),
                             "95% CI low": round(s.get("ci_low") or 0.0, 1),
                             "95% CI high": round(s.get("ci_high") or 0.0, 1),
-                            "bb/100": round(s.get("bb_per_100") or 0.0, 2),
+                            "bb/100": (round(s["bb_per_100"], 2) if s.get("bb_per_100") is not None else None),
                             "win%": round((s.get("win_rate") or 0.0) * 100, 1),
                         })
                     rows.sort(key=lambda r: -r["mean Δ/match"])
@@ -2177,7 +2205,7 @@ with tab_results:
                             "mean Δ/match": round(s.get("mean_delta") or 0.0, 1),
                             "95% CI low": round(s.get("ci_low") or 0.0, 1),
                             "95% CI high": round(s.get("ci_high") or 0.0, 1),
-                            "bb/100": round(s.get("bb_per_100") or 0.0, 2),
+                            "bb/100": (round(s["bb_per_100"], 2) if s.get("bb_per_100") is not None else None),
                             "win%": round((s.get("win_rate") or 0.0) * 100, 1),
                         })
                     abs_rows.sort(key=lambda r: -r["mean Δ/match"])
@@ -2234,7 +2262,7 @@ with tab_results:
                             "mean Δ/match": round(s.get("mean_delta") or 0.0, 1),
                             "95% CI low": round(s.get("ci_low") or 0.0, 1),
                             "95% CI high": round(s.get("ci_high") or 0.0, 1),
-                            "bb/100": round(s.get("bb_per_100") or 0.0, 2),
+                            "bb/100": (round(s["bb_per_100"], 2) if s.get("bb_per_100") is not None else None),
                             "win%": round((s.get("win_rate") or 0.0) * 100, 1),
                         })
                     st.markdown("**A vs B (paired)**")
@@ -2466,7 +2494,7 @@ with tab_profiler:
             "patch recommendation. These reconstruct chips from the action log, "
             "so they need the amount convention; it defaults to **mixed** (the "
             "fullhouse-engine logging style — calls log chips added, raises log "
-            f"the 'to' total). Hand evaluator in use: **{d1_profiler.evaluator_name()}**."
+            f"the 'to' total). Hand evaluator in use: **{getattr(d1_profiler, 'evaluator_name', lambda: 'unavailable')()}**."
         )
         cc1, cc2 = st.columns([2, 2])
         hero = cc1.text_input(
@@ -2506,7 +2534,7 @@ with tab_profiler:
         with st.expander("Player table (VPIP/PFR/WTSD/W$SD + net per 100)",
                          expanded=has_files):
             if st.button("Build chip table", key="profiler_chips",
-                         disabled=not has_files, type="primary"):
+                         disabled=not has_files or not hasattr(d1_profiler, "profile_chips"), type="primary"):
                 try:
                     conv = _resolve_conv()
                     n, agg, net_sum = d1_profiler.profile_chips(
@@ -2563,15 +2591,18 @@ with tab_profiler:
 
         # ----- River big-bet value / bluff read -----
         with st.expander("River big bets — value vs bluff (the underbluff signal)"):
-            st.caption(
-                f"Big = a river bet ≥ {int(100 * d1_profiler.BIG_BET_FRAC)}% of "
-                "pot. 'val% called' is how often a CALLED big bet held the winner "
-                "(the population your call faces); ≥75% means the field "
-                "underbluffs, favouring river_underbluff_fold. The strength split "
-                "sharpens that from won/lost to the bettor's actual made hand."
-            )
+            if hasattr(d1_profiler, "BIG_BET_FRAC"):
+                st.caption(
+                    f"Big = a river bet ≥ {int(100 * d1_profiler.BIG_BET_FRAC)}% of "
+                    "pot. 'val% called' is how often a CALLED big bet held the winner "
+                    "(the population your call faces); ≥75% means the field "
+                    "underbluffs, favouring river_underbluff_fold. The strength split "
+                    "sharpens that from won/lost to the bettor's actual made hand."
+                )
+            else:
+                st.info("River chip analysis is unavailable with the installed profiler.")
             if st.button("Analyse river big bets", key="profiler_river",
-                         disabled=not has_files):
+                         disabled=not has_files or not hasattr(d1_profiler, "river_big_bets")):
                 try:
                     conv = _resolve_conv()
                     r_agg, _ev = d1_profiler.river_big_bets(
@@ -2607,7 +2638,7 @@ with tab_profiler:
                     val, marg, bluff = (f.get("value", 0), f.get("marginal", 0),
                                         f.get("bluff", 0))
                     st.markdown("**Made-hand strength of called big river bets** "
-                                f"(n={ncl}, {d1_profiler.evaluator_name()})")
+                                f"(n={ncl}, {getattr(d1_profiler, 'evaluator_name', lambda: 'unavailable')()})")
                     m1, m2, m3 = st.columns(3)
                     m1.metric("value (≥2 pair)", f"{val}", f"{100*val/ncl:.0f}%")
                     m2.metric("one-pair", f"{marg}", f"{100*marg/ncl:.0f}%")
@@ -2629,7 +2660,7 @@ with tab_profiler:
                 "strategy lever on the Tab-3 backtest matrix before shipping."
             )
             if st.button("Analyse hero & recommend", key="profiler_hero_run",
-                         disabled=not has_files, type="primary"):
+                         disabled=not has_files or not hasattr(d1_profiler, "recommend_patch"), type="primary"):
                 if not hero:
                     st.warning("Enter your bot id above to attribute its losses. "
                                "(Without a hero, only a field-only 'keep' "

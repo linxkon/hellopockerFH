@@ -1,5 +1,20 @@
 # Fullhouse 2026 Poker Bot Technical Report
 
+## Sohu Competition adaptation
+
+The self-hosted Sohu client, durable action recovery, and Competition-aware
+backtesting are documented in [the runbook](docs/sohu_runbook.md). Start with
+`python -m competition_client --config /path/to/client.json --check` for a
+read-only configuration and strategy check. The example configuration requires
+an explicitly confirmed Competition ID before use.
+
+For fast internal matches with 2–6 independently hosted Agents, use
+[the local arena](docs/local_arena.md). It serves the same Competition HTTP
+entry points with private local credentials, fixed rosters, finite matches,
+and admin hand logs. Create a run with `python -m local_arena init`, then start
+it with `python -m local_arena serve`; participants keep their strategy code
+on their own machines.
+
 ## Final Result
 
 Fullhouse 2026 is complete.

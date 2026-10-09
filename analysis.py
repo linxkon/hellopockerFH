@@ -84,6 +84,20 @@ def placement(hero_id, chip_delta: dict) -> float:
     return greater + (tied + 1) / 2.0
 
 
+def match_placement(hero_id, result):
+    if result.get("environment_version") != "sohu-v1":
+        return placement(hero_id, result["chip_delta"])
+    from engine.competition import exact_bb_per_100
+    hands = result["hands_played_by_agent"]
+    bb = result["competition_config"]["big_blind"]
+    scores = {bid: exact_bb_per_100(net, hands[bid], bb) for bid, net in result["net_result"].items()}
+    score = scores[hero_id]
+    if score is None:
+        return None
+    others = [v for v in scores.values() if v is not None]
+    return sum(v > score for v in others) + (sum(v == score for v in others)+1)/2
+
+
 # ---------------------------------------------------------------------------
 # Orchestration (mirrors backtest.cmd_eval / cmd_ab; richer result shape)
 # ---------------------------------------------------------------------------
@@ -165,7 +179,7 @@ def _eval_match_worker(payload):
     is the default and the only mode parallel eval supports (the dashboard
     guards this; serial path still honors reload=False via its cached map)."""
     (ids, id_to_path, hands, seed_base, i, rotate_seats,
-     budget, fold_on_timeout) = payload
+     budget, fold_on_timeout, competition_config) = payload
     seed = seed_base + i
     order = ids[:]
     if rotate_seats:
@@ -175,7 +189,7 @@ def _eval_match_worker(payload):
         random.Random(seed * 7919 + 1).shuffle(order)
     dm = build_decide_map({b: id_to_path[b] for b in order})
     res = run_match_inproc(dm, hands, seed, budget=budget,
-                           fold_on_timeout=fold_on_timeout)
+                           fold_on_timeout=fold_on_timeout, competition_config=competition_config)
     return i, res
 
 
@@ -191,7 +205,7 @@ def _multi_round_worker(payload):
     the only thing changing here is the parallelism axis; that load-once
     optimization is a separate follow-up."""
     (hero_ids, hero_path, field_ids, field_map, hands, seed_base, i, n_seats,
-     budget, fold_on_timeout) = payload
+     budget, fold_on_timeout, competition_config) = payload
     seed = seed_base + i
     hero_idx = i % n_seats
     out = []
@@ -202,7 +216,7 @@ def _multi_round_worker(payload):
                  for bid in order}
         dm = build_decide_map({b: paths[b] for b in order})
         res = run_match_inproc(dm, hands, seed, budget=budget,
-                               fold_on_timeout=fold_on_timeout)
+                               fold_on_timeout=fold_on_timeout, competition_config=competition_config)
         out.append((hid, res))
     return i, out
 
@@ -216,7 +230,7 @@ def default_workers() -> int:
 
 def _run_eval(hero_path, opponent_paths, matches, hands, seed_base,
               budget, fold_on_timeout, reload, rotate_seats,
-              progress_callback=None, workers=1, worker_repo_path=None) -> dict:
+              progress_callback=None, workers=1, worker_repo_path=None, competition_config=None) -> dict:
     """One hero vs a field of opponents. opponent_paths may contain duplicate
     paths — make_ids gives each a distinct id (foo, foo_2, …) and build_decide_map
     loads each under a unique module name, so duplicates seat independently with
@@ -243,6 +257,8 @@ def _run_eval(hero_path, opponent_paths, matches, hands, seed_base,
     per_bot = {bid: [None] * matches for bid in ids}           # realized chip Δ
     per_bot_ev = {bid: [None] * matches for bid in ids}        # EV-adjusted Δ
     per_bot_placement = {bid: [None] * matches for bid in ids} # finish rank
+    match_records = [None] * matches
+    per_hands = {}
     errors_total: dict = {}
     timing_total: dict = {}
 
@@ -251,12 +267,14 @@ def _run_eval(hero_path, opponent_paths, matches, hands, seed_base,
     def _absorb(i, res):
         """Common per-match folding logic — shared between serial and parallel
         branches so they can't drift."""
+        match_records[i] = res
         chip = res["chip_delta"]
         evd = _ev_of(res)
         for bid in ids:
+            per_hands.setdefault(bid, [None]*matches)[i] = res["hands_played_by_agent"][bid]
             per_bot[bid][i] = chip[bid]
             per_bot_ev[bid][i] = evd.get(bid, chip[bid])
-            per_bot_placement[bid][i] = placement(bid, chip)
+            per_bot_placement[bid][i] = match_placement(bid, res)
         _accumulate(errors_total, timing_total, res)
 
     t0 = time.time()
@@ -264,7 +282,7 @@ def _run_eval(hero_path, opponent_paths, matches, hands, seed_base,
         n_workers = min(workers, matches)
         payloads = [
             (ids, id_to_path, hands, seed_base, i, rotate_seats,
-             budget, fold_on_timeout)
+             budget, fold_on_timeout, competition_config)
             for i in range(matches)
         ]
         done = 0
@@ -295,15 +313,20 @@ def _run_eval(hero_path, opponent_paths, matches, hands, seed_base,
                   if reload else {b: cached[b] for b in order})
 
             res = run_match_inproc(dm, hands, seed, budget=budget,
-                                   fold_on_timeout=fold_on_timeout)
+                                   fold_on_timeout=fold_on_timeout, competition_config=competition_config)
             _absorb(i, res)
 
             if progress_callback:
                 progress_callback(i + 1, matches)
 
     elapsed = time.time() - t0
-    stats = {bid: summarize(per_bot[bid], hands) for bid in ids}
+    stats = {bid: summarize(per_bot[bid], hands, per_hands[bid] if competition_config else None,
+                            competition_config["big_blind"] if competition_config else BIG_BLIND) for bid in ids}
     return {
+        "environment_version": "sohu-v1" if competition_config else "fullhouse-legacy-v2",
+        "competition_config": competition_config,
+        "per_match_hands": per_hands,
+        "match_records": match_records if competition_config else [],
         "elapsed_s": round(elapsed, 2),
         "hero_id": hero_id,
         "stats": stats,
@@ -317,7 +340,7 @@ def _run_eval(hero_path, opponent_paths, matches, hands, seed_base,
 
 def _run_multi(hero_specs, baseline_id, field_paths, matches, hands, seed_base,
                budget, fold_on_timeout, progress_callback=None,
-               workers=1, worker_repo_path=None) -> dict:
+               workers=1, worker_repo_path=None, competition_config=None) -> dict:
     """Paired N-way comparison (2..7 heroes) on identical seeds, identical seat,
     identical (freshly loaded) field. Generalises the old A-vs-B path: at each
     match index every hero plays its OWN match against the same field, in the
@@ -359,17 +382,21 @@ def _run_multi(hero_specs, baseline_id, field_paths, matches, hands, seed_base,
     deltas = {hid: [None] * matches for hid in hero_ids}       # realized chip Δ
     ev_deltas = {hid: [None] * matches for hid in hero_ids}    # EV-adjusted Δ
     placements = {hid: [None] * matches for hid in hero_ids}   # finish rank
+    match_records = [None] * matches
+    per_hands = {}
     errors_total: dict = {}
     timing_total: dict = {}
 
     def _absorb_round(i, round_results):
+        match_records[i] = dict(round_results)
         for hid, res in round_results:
+            per_hands.setdefault(hid, [None]*matches)[i] = res["hands_played_by_agent"][hid]
             _accumulate(errors_total, timing_total, res)
             chip = res["chip_delta"]
             evd = _ev_of(res)
             deltas[hid][i] = chip[hid]
             ev_deltas[hid][i] = evd.get(hid, chip[hid])
-            placements[hid][i] = placement(hid, chip)
+            placements[hid][i] = match_placement(hid, res)
 
     use_parallel = workers > 1 and matches > 1
 
@@ -378,7 +405,7 @@ def _run_multi(hero_specs, baseline_id, field_paths, matches, hands, seed_base,
         n_workers = min(workers, matches)
         payloads = [
             (hero_ids, hero_path, field_ids, field_map, hands, seed_base, i,
-             n_seats, budget, fold_on_timeout)
+             n_seats, budget, fold_on_timeout, competition_config)
             for i in range(matches)
         ]
         done = 0
@@ -406,7 +433,7 @@ def _run_multi(hero_specs, baseline_id, field_paths, matches, hands, seed_base,
                          for bid in order}
                 dm = build_decide_map({b: paths[b] for b in order})
                 return run_match_inproc(dm, hands, seed, budget=budget,
-                                        fold_on_timeout=fold_on_timeout)
+                                        fold_on_timeout=fold_on_timeout, competition_config=competition_config)
 
             round_results = [(hid, seated(hid)) for hid in hero_ids]
             _absorb_round(i, round_results)
@@ -417,7 +444,8 @@ def _run_multi(hero_specs, baseline_id, field_paths, matches, hands, seed_base,
     elapsed = time.time() - t0
 
     # Per-hero absolute stats.
-    stats = {hid: summarize(deltas[hid], hands) for hid in hero_ids}
+    stats = {hid: summarize(deltas[hid], hands, per_hands[hid] if competition_config else None,
+                            competition_config["big_blind"] if competition_config else BIG_BLIND) for hid in hero_ids}
 
     # Paired (hero - baseline) per match, for every non-baseline hero.
     base_deltas = deltas[baseline_id]
@@ -429,10 +457,16 @@ def _run_multi(hero_specs, baseline_id, field_paths, matches, hands, seed_base,
         pd = [a - b for a, b in zip(deltas[hid], base_deltas)]
         paired[hid] = pd
         sd = summarize(pd, hands)
+        if competition_config:
+            sd["bb_per_100"] = None
         t_stat = (sd["mean_delta"] / sd["stderr"]) if sd["stderr"] else 0.0
         vs_baseline[hid] = {"stats": sd, "t_stat": t_stat}
 
     return {
+        "environment_version": "sohu-v1" if competition_config else "fullhouse-legacy-v2",
+        "competition_config": competition_config,
+        "per_match_hands": per_hands,
+        "match_records": match_records if competition_config else [],
         "elapsed_s": round(elapsed, 2),
         "baseline": baseline_id,
         "hero_ids": hero_ids,
@@ -476,8 +510,10 @@ def write_result_json(job, results_dir, result, error) -> Path:
     # Self-describing params: stamp engine constants at write time (don't clobber
     # any values a caller already set).
     params = dict(job.get("params") or {})
-    params.setdefault("big_blind", BIG_BLIND)
-    params.setdefault("starting_stack", STARTING_STACK)
+    cfg = params.get("competition_config") or {}
+    params.setdefault("big_blind", cfg.get("big_blind", BIG_BLIND))
+    params.setdefault("starting_stack", cfg.get("buy_in", STARTING_STACK))
+    params.setdefault("environment_version", "sohu-v1" if cfg else "fullhouse-legacy-v2")
 
     base = {
         "schema_version": SCHEMA_VERSION,
@@ -493,6 +529,10 @@ def write_result_json(job, results_dir, result, error) -> Path:
         "opponents": job["opponents"],
         "preset_name": job["preset_name"],
         "params": params,
+        "environment_version": (result or {}).get("environment_version", params["environment_version"]),
+        "competition_config": (result or {}).get("competition_config"),
+        "per_match_hands": (result or {}).get("per_match_hands"),
+        "match_records": (result or {}).get("match_records"),
         "elapsed_s": (result or {}).get("elapsed_s"),
         "stats": (result or {}).get("stats"),
         "per_match_deltas": (result or {}).get("per_match_deltas"),
@@ -926,7 +966,12 @@ def field_signature(result: dict) -> str:
 def probe_label(result: dict) -> str:
     """Column key within a comparison set: the preset name if present, else the
     collapsed field signature."""
-    return result.get("preset_name") or field_signature(result) or "(no field)"
+    label = result.get("preset_name") or field_signature(result) or "(no field)"
+    params = result.get("params") or {}
+    cfg = params.get("competition_config") or result.get("competition_config")
+    if cfg:
+        label += " | sohu " + json.dumps(cfg, sort_keys=True, separators=(",", ":")) + " hands=" + str(params.get("hands"))
+    return label
 
 
 def _completed_at(result: dict) -> str:
@@ -1007,10 +1052,20 @@ def matrix_cell(result: dict, hero_id: str, baseline_id: str, series: str, *,
     arrs = series_arrays(result, series)
     cand = arrs.get(hero_id)
     base = arrs.get(baseline_id)
+    if series == "placement" and cand and base:
+        pairs = [(a,b) for a,b in zip(cand,base) if a is not None and b is not None]
+        cand, base = [a for a,b in pairs], [b for a,b in pairs]
     if not cand or not base:
         return None
     hands, bb = hands_and_bb(result)
-    return paired_stats(cand, base, hands, bb, use_scipy=use_scipy)
+    stats = paired_stats(cand, base, hands, bb, use_scipy=use_scipy)
+    if result.get("environment_version") == "sohu-v1" and series != "placement":
+        actual = result.get("per_match_hands") or {}
+        ch, bh = actual.get(hero_id), actual.get(baseline_id)
+        stats["mean_bb_per_100"] = (bb_per_100(sum(cand), sum(ch), bb)-bb_per_100(sum(base), sum(bh), bb)
+                                    if ch and bh else float("nan"))
+        stats["inference_unit"] = "chips per match; rate difference uses actual hands"
+    return stats
 
 
 # Which field of a paired_stats dict each matrix metric reads, plus a label.
@@ -1062,7 +1117,7 @@ def absolute_matrix(result: dict, hero_ids, series: str):
     hands, bb = hands_and_bb(result)
     out = {}
     for hid in hero_ids:
-        vals = arrs.get(hid)
+        vals = [v for v in arrs.get(hid) or [] if v is not None]
         if not vals:
             continue
         n = len(vals)
@@ -1070,7 +1125,9 @@ def absolute_matrix(result: dict, hero_ids, series: str):
         out[hid] = {
             "n": n,
             "mean_chips": mean,
-            "mean_bb_per_100": bb_per_100(mean, hands, bb),
+            "mean_bb_per_100": (bb_per_100(sum(vals), sum((result.get("per_match_hands") or {}).get(hid, [])), bb)
+                                if result.get("environment_version") == "sohu-v1" and series != "placement"
+                                else bb_per_100(mean, hands, bb)),
             "median_chips": statistics.median(vals),
         }
     return out
@@ -1174,8 +1231,14 @@ def pairwise_table(result: dict, series: str, baseline=None, *,
 
     rows, raw_ps = [], []
     for cand, base in pairs:
-        ps = paired_stats(arrs[cand], arrs[base], hands, bb,
+        pairs = [(a,b) for a,b in zip(arrs[cand],arrs[base]) if a is not None and b is not None]
+        ps = paired_stats([a for a,b in pairs], [b for a,b in pairs], hands, bb,
                           alpha=alpha, use_scipy=use_scipy)
+        if result.get("environment_version") == "sohu-v1" and series != "placement":
+            actual = result.get("per_match_hands") or {}
+            ch, bh = actual.get(cand), actual.get(base)
+            ps["mean_bb_per_100"] = (bb_per_100(sum(arrs[cand]), sum(ch), bb)-bb_per_100(sum(arrs[base]), sum(bh), bb)
+                                     if ch and bh else float("nan"))
         row = {"pair": f"{cand} − {base}", "cand": cand, "base": base}
         row.update(ps)
         rows.append(row)
@@ -1201,8 +1264,8 @@ def select_series_array(result: dict, series: str, hero_id: str,
         cand = arrs.get(hero_id) or []
         base = arrs.get(baseline_id) or []
         n = min(len(cand), len(base))
-        return [cand[i] - base[i] for i in range(n)]
-    return list(arrs.get(hero_id) or [])
+        return [cand[i] - base[i] for i in range(n) if cand[i] is not None and base[i] is not None]
+    return [v for v in arrs.get(hero_id) or [] if v is not None]
 
 
 def realized_ev_gap(result: dict, hero_id: str):
@@ -1229,7 +1292,7 @@ def placement_aggregates(result: dict, hero_ids=None, ks=(1, 2, 3)):
         hero_ids = list(pm.keys())
     out = {}
     for hid in hero_ids:
-        ranks = pm.get(hid) or []
+        ranks = [r for r in pm.get(hid) or [] if r is not None]
         n = len(ranks)
         if n == 0:
             out[hid] = {"n": 0, "mean_rank": float("nan"),
@@ -1369,6 +1432,9 @@ def raw_per_match_records(result: dict):
     for i in range(n):
         rec = {"match": i + 1}
         for h in hero_ids:
+            actual = (result.get("per_match_hands") or {}).get(h) or []
+            if actual:
+                rec[f"{h}_hands_played"] = actual[i] if i < len(actual) else None
             rec[f"{h}_realized"] = (rz.get(h) or [None] * n)[i] if i < len(rz.get(h) or []) else None
             rec[f"{h}_ev"] = (ev.get(h) or [None] * n)[i] if i < len(ev.get(h) or []) else None
             if pl:
@@ -1383,6 +1449,8 @@ def raw_per_match_columns(result: dict):
     cols = ["match"]
     for h in hero_ids_of(result):
         cols += [f"{h}_realized", f"{h}_ev"]
+        if (result.get("per_match_hands") or {}).get(h):
+            cols.append(f"{h}_hands_played")
         if pl:
             cols += [f"{h}_placement"]
     return cols

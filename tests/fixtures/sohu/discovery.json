@@ -1,0 +1,31 @@
+{
+  "competitions": [
+    {
+      "id": "11111111-1111-4111-8111-111111111111",
+      "type": "playground",
+      "name": "Playground S1",
+      "status": "active",
+      "schedule": {
+        "startsAt": "2026-08-01T00:00:00.000Z",
+        "endsAt": "2026-08-02T00:00:00.000Z"
+      },
+      "summary": {
+        "initialBankroll": 40000,
+        "buyIn": 20000,
+        "blinds": {
+          "small": 100,
+          "big": 200
+        },
+        "minPlayers": 2,
+        "maxPlayers": 6,
+        "formationWindowSeconds": 30,
+        "actionTimeoutSeconds": 60,
+        "automaticRebuy": true,
+        "standing": {
+          "metric": "bbPer100",
+          "minimumHands": 20
+        }
+      }
+    }
+  ]
+}
